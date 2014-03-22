@@ -1,0 +1,49 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+// definition of static APL Values
+
+stv_def(Zero     )   ///<  0
+stv_def(One      )   ///<  1
+stv_def(Two      )   ///<  2
+stv_def(Three    )   ///<  3
+stv_def(Four     )   ///<  4
+stv_def(Five     )   ///<  5
+stv_def(Six      )   ///<  6
+stv_def(Seven    )   ///<  7
+stv_def(Eight    )   ///<  8
+stv_def(Nine     )   ///<  9
+stv_def(Minus_One)   ///< ¯1
+stv_def(Spc      )   ///< 10
+stv_def(Idx0     )   ///< ⍳0
+stv_def(Str0     )   ///< ''
+stv_def(zStr0    )   ///< ⊂''
+stv_def(Str0_0   )   ///< 0 0⍴''
+stv_def(Str3_0   )   ///< 3 0⍴''
+stv_def(Max      )   ///<  72370055773322621e75
+stv_def(Min      )   ///< -72370055773322621e75
+stv_def(AV       )   ///< ⎕AV
+stv_def(Max_CT   )   ///< max. ⎕CT
+stv_def(Max_PP  )   ///< max. ⎕PP
+stv_def(Quad_NLT)   ///< 'En_US.nlt'
+stv_def(Quad_TC )   ///< ⎕UCS 8 13 10
+
+#undef stv_def

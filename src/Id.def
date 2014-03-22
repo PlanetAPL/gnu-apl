@@ -1,0 +1,181 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+//      Id              Unicode             = Value    Macro
+//----------------------------------------------------------
+id_def( No_ID         , ---               , = 0      , pp )
+id_def( No_ID1        , ---               , = 1      , pp )
+id_def( No_ID2        , ---               , = 2      , pp )
+id_def( AF            , ---               , = 0x4101 , qf )
+id_def( AI            , ---               ,          , qv )
+id_def( ARG           , ---               ,          , qv )
+id_def( F2_AND        , AND               ,          , av )
+id_def( APL_VALUE1    , ---               ,          , pp )
+id_def( APL_VALUE2    , ---               ,          , pp )
+id_def( APL_VALUE3    , ---               ,          , pp )
+id_def( ASSIGN        , LEFT_ARROW        ,          , av )
+id_def( F0_ZILDE      , ZILDE             ,          , av )
+id_def( AT            , ---               ,          , qf )
+id_def( AV            , ---               ,          , qv )
+id_def( F12_BINOM     , ASCII_EXCLAM      , = 0x4201 , av )
+id_def( BRANCH        , RIGHT_ARROW       ,          , av )
+id_def( CHARACTER     , ---               , = 0x4301 , pp )
+id_def( F12_CIRCLE    , CIRCLE            ,          , av )
+id_def( COLON         , ASCII_COLON       ,          , av )
+id_def( F12_COMMA     , ASCII_COMMA       ,          , av )
+id_def( F12_COMMA1    , COMMA_BAR         ,          , av )
+id_def( OPER1_COMMUTE , TILDE_DIAERESIS   ,          , av )
+id_def( COMPLEX       , ---               ,          , pp )
+id_def( CR            , ---               ,          , qf )
+id_def( CT            , ---               ,          , qv )
+id_def( F12_DECODE    , UP_TACK           , = 0x4401 , av )
+id_def( DIAMOND       , DIAMOND           ,          , av )
+id_def( F12_DIVIDE    , DIVIDE            ,          , av )
+id_def( DL            , ---               ,          , qf )
+id_def( F12_DOMINO    , QUAD_DIVIDE       ,          , av )
+id_def( F12_DROP      , DOWN_ARROW        ,          , av )
+id_def( EA            , ---               , = 0x4501 , qf )
+id_def( OPER1_EACH    , DIAERESIS         ,          , av )
+id_def( EC            , ---               ,          , qf )
+id_def( F12_ELEMENT   , ELEMENT           ,          , av )
+id_def( EM            , ---               ,          , qv )
+id_def( F12_ENCODE    , DOWN_TACK         ,          , av )
+id_def( END           , ---               ,          , pp )
+id_def( ENDL          , ---               ,          , pp )  // last END in line
+id_def( ENV           , ---               ,          , qf )
+id_def( F2_EQUAL      , ASCII_EQUAL       ,          , av )
+id_def( F12_EQUIV     , EQUIVALENT        ,          , av )
+id_def( ERROR         , ---               ,          , pp )
+id_def( ES            , ---               ,          , qf )
+id_def( ESCAPE        , RIGHT_ARROW       ,          , av )
+id_def( ET            , ---               ,          , qv )
+id_def( EX            , ---               ,          , qf )
+id_def( F1_EXECUTE    , EXECUTE           ,          , av )
+id_def( FC            , ---               , = 0x4601 , qv )
+id_def( F2_FIND       , EPSILON_UBAR      ,          , av )
+id_def( FIRST_TIME    , ---               ,          , pp )
+id_def( F12_FORMAT    , FORMAT            ,          , av )
+id_def( FX            , ---               ,          , qf )
+id_def( F2_GREATER    , ASCII_GREATER     , = 0x4701 , av )
+id_def( F2_INDEX      , SQUISH_QUAD       , = 0x4901 , av )
+id_def( F12_INDEX_OF  , IOTA              ,          , av )
+id_def( INTEGER       , ---               ,          , pp )
+id_def( INVALID       , ---               ,          , pp )
+id_def( IO            , ---               ,          , qv )
+id_def( INP           , ---               ,          , qf )
+id_def( JOT           , RING_OPERATOR     , = 0x4A01 , av )
+id_def( L             , ---               , = 0x4C01 , qv )
+id_def( L_BRACK       , ASCII_L_BRACK     ,          , av )
+id_def( L_PARENT      , ASCII_L_PARENT    ,          , av )
+id_def( LC            , ---               ,          , qv )
+id_def( F2_LEFT       , LEFT_TACK         ,          , av )
+id_def( F2_LEQ        , LESS_OR_EQUAL     ,          , av )
+id_def( F2_LESS       , ASCII_LESS        ,          , av )
+id_def( F12_LOGA      , LOGARITHM         ,          , av )
+id_def( LVAL          , ---               ,          , pp )
+id_def( LX            , ---               ,          , qv )
+id_def( F2_MEQ        , MORE_OR_EQUAL     , = 0x4D01 , av )
+id_def( F12_MINUS     , ASCII_MINUS       ,          , av )
+id_def( NA            , ---               , = 0x4E01 , qf )
+id_def( F2_NAND       , NAND              ,          , av )
+id_def( NC            , ---               ,          , qf )
+id_def( NL            , ---               ,          , qf )
+id_def( NLT           , ---               ,          , qv )
+id_def( NO_VALUE      , ---               ,          , pp )
+id_def( F2_NOR        , NOR               ,          , av )
+id_def( OFF           , ---               , = 0x4F01 , pp )
+id_def( F2_OR         , OR                ,          , av )
+id_def( F12_PARTITION , SUBSET            , = 0x5001 , av )
+id_def( F12_PICK      , SUPERSET          ,          , av )
+id_def( F12_PLUS      , ASCII_PLUS        ,          , av )
+id_def( F12_POWER     , STAR_OPERATOR     ,          , av )
+id_def( PP            , ---               ,          , qv )
+id_def( PR            , ---               ,          , qv )
+id_def( PS            , ---               ,          , qv )
+id_def( PT            , ---               ,          , qv )
+id_def( OPER2_PRODUCT , ASCII_FULLSTOP    ,          , av )
+id_def( PW            , ---               ,          , qv )
+id_def( QUAD_QUAD     , QUAD_QUAD         , = 0x5101 , av )
+id_def( QUOTE1        , SINGLE_QUOTE      ,          , av )
+id_def( QUOTE2        , ASCII_DOUBLE_QUOTE,          , av )
+id_def( QUOTE_QUAD    , QUOTE_QUAD        ,          , av )
+id_def( R             , ---               , = 0x5201 , qv )
+id_def( R_ARROW       , RIGHT_ARROW       ,          , av )
+id_def( R_BRACK       , ASCII_R_BRACK     ,          , av )
+id_def( R_PARENT      , ASCII_R_PARENT    ,          , av )
+id_def( OPER1_RANK    , JOT_DIARESIS      ,          , av )
+id_def( REAL          , ---               ,          , pp )
+id_def( OPER1_REDUCE  , ASCII_SLASH       ,          , av )
+id_def( OPER1_REDUCE1 , SLASH_BAR         ,          , av )
+id_def( RETURN_EXEC   , ---               ,          , pp )   // ⍎X
+id_def( RETURN_STATS  , ---               ,          , pp )   // A ◊ B ◊ C
+id_def( RETURN_SYMBOL , ---               ,          , pp )   // Z←A FUN B
+id_def( RETURN_VOID   , ---               ,          , pp )   // A FUN B
+id_def( F12_RHO       , RHO               ,          , av )
+id_def( F2_RIGHT      , RIGHT_TACK        ,          , av )
+id_def( RL            , ---               ,          , qv )
+id_def( F12_RND_DN    , LEFT_FLOOR        ,          , av )
+id_def( F12_RND_UP    , LEFT_CEILING      ,          , av )
+id_def( F12_ROLL      , ASCII_QUESTION    ,          , av )
+id_def( F12_ROTATE    , CIRCLE_STILE      ,          , av )
+id_def( F12_ROTATE1   , CIRCLE_BAR        ,          , av )
+id_def( OPER1_SCAN    , ASCII_BACKSLASH   , = 0x5301 , av )
+id_def( OPER1_SCAN1   , BACKSLASH_BAR     ,          , av )
+id_def( SEMICOL       , ASCII_SEMICOLON   ,          , av )
+id_def( SI            , ---               ,          , qf )
+id_def( SI_PUSHED     , ---               ,          , pp )
+id_def( SI_EVAL_ERR   , ---               ,          , pp )
+id_def( F12_SORT_ASC  , SORT_ASCENDING    ,          , av )
+id_def( F12_SORT_DES  , SORT_DECENDING    ,          , av )
+id_def( SPACE         , ASCII_SPACE       ,          , av )
+id_def( F12_STILE     , ASCII_BAR         ,          , av )
+id_def( SVC           , ---               ,          , qf )
+id_def( SVE           , ---               ,          , qv )
+id_def( SVO           , ---               ,          , qf )
+id_def( SVQ           , ---               ,          , qf )
+id_def( SVR           , ---               ,          , qf )
+id_def( SVS           , ---               ,          , qf )
+id_def( SYL           , ---               ,          , qv )
+id_def( USER_SYMBOL   , ---               ,          , pp )
+id_def( F12_TAKE      , UP_ARROW          , = 0x5401 , av )
+id_def( TC            , ---               ,          , qv )
+id_def( TF            , ---               ,          , qf )
+id_def( F12_TIMES     , MULTIPLY          ,          , av )
+id_def( F12_TRANSPOSE , TRANSPOSE         ,          , av )
+id_def( TS            , ---               ,          , qv )
+id_def( TZ            , ---               ,          , qv )
+id_def( UCS           , ---               , = 0x5501 , qf )
+id_def( UL            , ---               ,          , qv )
+id_def( F2_UNEQ       , NOT_EQUAL         ,          , av )
+id_def( F1_UNIQUE     , UNION             ,          , av )
+id_def( FUN_USER      , ---               ,          , pp )
+id_def( VARIABLE      , ---               , = 0x5601 , pp )
+id_def( VOID          , ---               ,          , pp )
+id_def( WA            , ---               , = 0x5701 , qv )
+id_def( F12_WITHOUT   , TILDE_OPERATOR    ,          , av )
+//-----------------------------------------------------------------------------
+
+#undef id_def
+#undef av
+#undef pp
+#undef qf
+#undef qv
+#undef st
+

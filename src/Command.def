@@ -1,0 +1,67 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+// definition of APL commands and the functions that implement them
+
+cmd_def(")HELP"     , cmd_HELP(CERR);                       , )
+cmd_def(")CHECK"    , cmd_CHECK(out);                       , )
+cmd_def(")CLEAR"    , Workspace::clear_WS(out, false);      , )
+cmd_def(")CONTINUE" , cmd_CONTINUE(out);                    , )
+cmd_def(")COPY"     , Workspace::copy_WS(out, args, false); , [lib] ws-name [objects])
+cmd_def(")DROP"     , cmd_DROP(out, args);                  , )
+cmd_def(")ERASE"    , cmd_ERASE(CERR, args);                , symbol ...)
+cmd_def(")FNS"      , Workspace::list_symbols(out, LIST_FUNS, arg);  , [from-to])
+cmd_def(")HOST"     , cmd_HOST(out, arg);                   , command)
+cmd_def(")IN"       , cmd_IN(out, args, false);             , filename [names])
+cmd_def(")LIBS"     , cmd_LIBS(out, args);                  , [new root])
+cmd_def(")LIB"      , cmd_LIB(out, arg);                    , [lib or path])
+cmd_def(")LOAD"     , line = Workspace::load_WS(out, args); , [lib] ws-name)
+cmd_def(")MORE"     , cmd_MORE(out);                        , [lib] ws-name)
+cmd_def(")NMS"      , Workspace::list_symbols(out, LIST_NAMES, arg); , [from-to])
+cmd_def(")OFF"      , cmd_OFF(0);                           , )
+cmd_def(")OPS"      , Workspace::list_symbols(out, LIST_OPERS, arg); , [from-to])
+cmd_def(")OUT"      , cmd_OUT(out, args);                   , filename [names])
+cmd_def(")PCOPY"    , Workspace::copy_WS(out, args, true);  , [lib] ws-name [objects])
+cmd_def(")PIN"      , cmd_IN(out, args, true);              , filename [names])
+cmd_def(")RESET"    , Workspace::clear_SI(out);             , )
+cmd_def(")SAVE"     , Workspace::save_WS(out, args);        , [[lib] ws-name])
+cmd_def(")SIC"      , Workspace::clear_SI(out);             , )
+cmd_def(")SINL"     , Workspace::list_SI(out, SIM_SINL);    , )
+cmd_def(")SIS"      , Workspace::list_SI(out, SIM_SIS);     , )
+cmd_def(")SI"       , Workspace::list_SI(out, SIM_SI);      , )
+cmd_def(")SYMBOLS"  , Workspace::list_symbols(out, LIST_NONE, arg);  , [from-to])
+cmd_def(")VALUES"   , Value::list_all(out, false);          , )
+cmd_def(")VARS"     , Workspace::list_symbols(out, LIST_VARS, arg);  , [from-to])
+cmd_def(")WSID"     , Workspace::wsid(out, arg);            , [ws-name])
+
+cmd_def("]HELP"     , cmd_HELP(out);                        , )
+cmd_def("]COLOR"    , Output::toggle_color(arg);            , [ON or OFF])
+cmd_def("]EXPECT"   , TestFiles::expect_apl_errors(arg);    , errors)
+cmd_def("]KEYB"     , cmd_KEYB();                           , )
+cmd_def("]LOG"      , cmd_LOG(out, arg);                    , [facility])
+cmd_def("]OWNERS"   , Value::list_all(out, true);           , )
+cmd_def("]SIS"      , Workspace::list_SI(out, SIM_SIS_dbg); , )
+cmd_def("]SI"       , Workspace::list_SI(out, SIM_SI_dbg);  , )
+cmd_def("]SVARS"    , Svar_DB::print(out);                  , )
+cmd_def("]SYMBOL"   , Workspace::get_symbol_table().list_symbol(out, arg); , symbol)
+cmd_def("]XTERM"    , Output::toggle_color(arg);            , [ON or OFF])
+
+#undef cmd_def

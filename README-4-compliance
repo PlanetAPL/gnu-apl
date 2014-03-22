@@ -1,0 +1,48 @@
+
+The following features are not planned to be supported:
+-------------------------------------------------------
+
+* ⎕NLT
+
+
+The following features may be added (if requested):
+---------------------------------------------------
+
+* more shared variables / auxiliary processors
+* ⎕NA
+* more ⎕L and ⎕R testcases
+
+
+The following features are planned:
+-----------------------------------
+
+* Lambdas (unnamed functions)
+
+
+The following extensions are provided:
+--------------------------------------
+
+* various debug commands, see )HELP
+
+* dyadic ⎕CR   (DISPLAY-like value output)
+
+* 3 ⎕TF        (⎕TF with CDR format)
+
+* ⎕ENV B (environment variables)
+    return the values of environment variables whose names starts with B.
+    Return N by 2 matrix, with column 1 containing environment variable names
+    and column 2 their values.
+
+* APL scripting
+    text files beginning with:
+
+    #!apl
+
+    run the interpreter as a shell with the subsequent lines as input.
+
+* ⎕INP
+     HERE-document like input for long texts
+
+* Native APL functions
+    User defined APL functions written in C++
+

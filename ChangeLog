@@ -1,0 +1,60 @@
+
+ for detailed change information see subversion repository:
+ http://svn.savannah.gnu.org/viewvc/tags/?root=apl
+
+ The SVN numbers below can be found in file src/buildtag.hh
+
+ SVN 
+ ----
+ 4213  GNU APL 1.0 Initial release
+
+ 4271  fixed missing Error display e.g. in tokenize_real()
+ 4276  proper error lines for tokenize() errors
+ 4277  improved sigaction portability
+ 4281  use Svar_DB instead of prctl() to improve portability
+ 4285  comments on apl.texi included
+ 4291  replaced ⍧ with ⍬ in ⎕AV and ]KEYB
+ 4293  ⍬ implemented as niladic function
+ 4319  support for config file 'preferences' added
+ 4333  some portability options fixed
+ 4366  make library paths configurable in file(s) 'preferences'
+ 4366  fixed problem with ∇ in strings in Nabbla editor
+ 4388  fixed fault in Parser::remove_nongrouping_parantheses()
+ 4397  improved error information for Svar sockets, changed to client port
+ 4414  made use of readline configurable
+ 4428  check for libpthread added, Debian Build-Depends on libc6 relaxed
+ 4448  Increased MAX_FUN_OPER
+
+ 4458 GNU APL 1.1 release
+
+ 4467 fixed bug in format-by-example
+ 4545 ValueHistory added, remaining stale values fixed
+ 4581 fixed parser problem with A←[IDX]←B
+ 4590 fixed problem with enclosed ⍳0
+ 4606 fixed ∊ and ↓ character problems and segfault on ⎕EA
+ 4609 figlet banner added
+ 4633 curses support from Elias Mårtenson added
+ 4654 fixed ⍎'→3', ∇, and WS_FULL problems reported by Elias
+ 4671 fixed 4 ⎕CR bug reported by Elias
+ 4710 restructured class Workspace
+ 4715 fixed [] binding in Parser.cc"
+ 4716 --rawCIN command line option added
+ 4735 fixed ⌹ dimension problem, send CIN to cerr
+ 4800 added alternate APL characters from Bob Smith
+ 4802 fixed wrong closing flag for <SI-entry> in workspace XML file
+ 4810 UERR channel added
+ 4818 use kill() rather than /proc to check if process is alive
+ 4822 fixed 2⊤1 problem
+ 4898 shared_ptr<Value> working (not yet enabled by default)
+ 4905 LAST VERSION WITH OLD MEMORY MANAGEMENT
+ 4907 new memory management
+ 4937 removed old memory management flags
+ 4971 added ⍷ (U+2377) as alternate char for ⋸
+ 5030 first step towards native C++ functions that can be called from APL
+ 5036 native function file_io completed
+ 5048 more portable native function interface
+ 5183 replaced snprintf() by locale-agnostic function
+ 5220 fixed (2 2⍴⍳4)[1;⍬] problem
+ 5267 finalized 10⎕CR and fixed some bugs
+ 5277 GNU APL 1.2 release
+

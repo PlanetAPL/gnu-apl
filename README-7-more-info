@@ -1,0 +1,53 @@
+
+If you have reached this file, then GNU APL is hopefully running well for
+you and you may have more questions that are related to APL in general
+rather than to GNU APL in particular.
+
+The following is a list of web links that may be used as starting points
+for more information on the web. This list is admittedly rather arbitrary
+and by no means complete.
+
+
+ISO Standard 13751
+------------------
+
+The ISO standard implemented by GNU APL can be found here:
+
+    www.math.uwaterloo.ca/~ljdickey/apl-rep/docs/is13751.pdf
+
+IBM Documentation
+-----------------
+
+In cases where the ISO 13751 standard was not clear, the IBM documents
+for APL2 were consulted as a second opinion:
+
+    www.catpad.net/michael/apl/ibmapl2/apl2lrm.pdf
+
+
+Dyalog APL Manual
+-----------------
+
+Dyalog Ltd. a commercial APL vendor, has published a book describing
+their APL in great detail. Not all features described there are implemented
+in GNU APL, but this book is a good starting point for beginners.
+
+    dyalog.com/MasteringDyalogAPL/MasteringDyalogAPL.pdf
+
+
+comp.lang.apl
+-------------
+
+An always interesting APL related newsgroup which has been around for
+many years is:
+
+    groups.google.com/forum/#!forum/comp.lang.apl
+
+
+Sam Sirlin's FAQ
+----------------
+
+Much more information about APL can be found at Sam Sirlin's APL FAQ at:
+
+    home.earthlink.net/~swsirlin/apl.faq.html
+
+

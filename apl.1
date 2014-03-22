@@ -1,0 +1,149 @@
+.TH APL 1 "2013 September 12" "apl" "GNU APL"
+.SH "NAME"
+GNU APL - a free APL interpreter
+.SH SYNOPSIS
+.B apl
+[options]
+.SH DESCRIPTION
+.B GNU APL
+is an interpreter for the programming language APL
+with support for nested arrays as defined in ISO standard
+13751, aka. "Programming Language APL, Extended".
+This man page only describes the command line options
+of GNU APL; for a complete documentation of GNU APL
+see the \fBinfo(1)\fP file \fBapl.info\fP that is distributed
+with \fBGNU APL\fP.
+.PP
+Before explaining the command line options of GNU APL, it may be worthwile
+to mention how to stop (i.e. exit) it.
+Neither ^C nor ^D will stop GNU APL; these keys serve other purposes.
+Instead, you leave GNU APL with the command )OFF (on a separate line)
+like this:
+.PP
+)OFF
+.PP
+If APL is computing an expression (and possibly caught in an endless
+loop), then you may have to press ^C (called \fBATTENTION\fP in APL) in order
+to return to APL's command mode and then give the )OFF command.
+.PP
+.B GNU APL
+accepts the following command line options:
+.SH OPTIONS
+.TP
+.B --cfg
+show ./configure options used and exit.
+.TP
+.B -d
+run the interpreter in the background (i.e. as daemon)
+.TP
+.B -f file
+read input from \fIfile\fP (after all -T files) rather than from the
+keyboard.  When the end of the file is reached, input is switched
+back to the keyboard.  If you want to terminate the APL
+interpreter after executing the file, use )OFF as last line in the
+file.
+.TP
+.B-h, --help\
+print all command line options with a brief hint what they do.
+.TP
+.B --id proc
+use processor ID \fIproc\fP for this interpreter. If no ID is provided,
+then the first unused ID > 1000 is taken by this interpreter and
+the ID becomes used as long as the interpreter runs. Processor IDs
+are used by shared variables to identify share partners.
+.TP
+.B --noCIN
+do not echo stdin to stdout. Almost a must for scripting (unless
+you troubleshoot a script).
+.TP
+.B --noCONT
+do not load a \fBCONTINUE\fP workspace on start-up.
+.TP
+.B --noSV
+do not start APnnn (a shared variable server) on start-up. This
+disables communication with other workspaces or auxiliary
+processors through shared variables.
+.TP
+.B --par pproc
+use processor parent ID \fIpproc\fP (default: no parent ID).
+.TP
+.B -s, --script
+this option is an abbreviation for
+.B --silent --noCIN --noCONT -f -
+(a typical combination of options for APL scripts).
+.TP
+.B --silent
+suppress printing of the GNU APL welcome message. Useful for APL scripts.
+.TP
+.B -T testcases ...
+run testcases. Testcases are text files that
+contain both input to the APL interpreter and the expected
+response from the interpreter. The output from the interpreter is
+compared with the expected output in the testcase file(s) and
+differences are marked. In addition a summary file is created that
+tells whether or not each of the testcases was successful.
+.TP
+.B --TM mode
+test mode. This option how the interpreter shall behave when
+running a number of testcases (as specified with the `\fB-T\fR' option)
+.TP
+.B --TM 0 (default)
+run all testcases and exit after the last testcase.
+.TP
+.B --TM 1
+like \fB--TM 0\fR if no error was detected.  However, if one
+of the testcases has failed, then the interpreter does not exit so
+that the user can investigate the state of APL (SI, variable
+values, etc.).
+.TP
+.B --TM 2
+like \fB--TM 1\fR, but stay in the interpreter even if all
+testcases have passed. This can be useful in order to quickly bring
+the interpreter into a specific state and continue manual
+troubleshooting from that state.
+.TP
+.B --TM 3
+like \fB--TM 1\fR, but stop testcase execution after the
+first failed testcase (i.e. do not exit).
+.TP
+.B --TM 4
+like `\fB--TM 3\fR', but exit after the first failed testcase.
+The is useful for automatic regression tests, where no errors are
+expected.
+.TP
+.B --TS
+Normally, when the interpreter is run with the `\fB-T\fR' option, then
+an existing summary.log file is overridden without notice.  This
+option causes new test results to be appended to a possibly
+existing summary.log instead of overriding it.
+.TP
+.B -v, --version
+show version information and exit.
+.TP
+.B -w milli
+wait \fImilli\fP milliseconds at start-up. Useful to give other programs
+that are started together with this interpreter time to initialize
+themselves.
+.TP
+.B --
+end of options for the interpreter. There can be more options
+following; these options are ignored by the APL interpreter, but
+are visible in the APL system variable ⎕ARG (which plays the role
+of argv in main(int argv, char * argv[]) in C/C++). When APL is run as
+a script, then \fB--\fR MUST be present in the argument for the
+interpreter (see
+.BR execve (2)
+) or else the script file will not be found.
+
+.SH REPORTING BUGS
+
+Report bugs to <TO-BE-DEFINED>
+.PP
+.IR "GNU APL"
+
+.SH AUTHOR
+.PP
+This manual page was written by Jürgen Sauermann, the initial
+author of GNU APL.
+
+

@@ -1,0 +1,414 @@
+
+   /*** phrase table ***
+
+   phrase ##:  phrase              length
+   --------------------------------------
+   phrase  0:                           0
+   phrase  1:  (    VAL  )              3
+   phrase  2:  (    F   )               3
+   phrase  3:  F0                       1
+   phrase  4:  ←    F   VAL             3
+   phrase  5:  →    F   VAL             3
+   phrase  6:  F   F   VAL              3
+   phrase  7:  [ ;  F   VAL             3
+   phrase  8:  END  F   VAL             3
+   phrase  9:  (    F   VAL             3
+   phrase 10:  ]    F   VAL             3
+   phrase 11:  RET  F   VAL             3
+   phrase 12:  OP1  F   VAL             3
+   phrase 13:  ←    F   [X]  VAL        4
+   phrase 14:  →    F   [X]  VAL        4
+   phrase 15:  F   F   [X]  VAL         4
+   phrase 16:  [ ;  F   [X]  VAL        4
+   phrase 17:  END  F   [X]  VAL        4
+   phrase 18:  (    F   [X]  VAL        4
+   phrase 19:  ]    F   [X]  VAL        4
+   phrase 20:  RET  F   [X]  VAL        4
+   phrase 21:  OP1  F   [X]  VAL        4
+   phrase 22:  VAL  F   VAL             3
+   phrase 23:  VAL  F   [X]  VAL        4
+   phrase 24:  VAL  OP1  VAL            3
+   phrase 25:  VAL  OP1  [X]  VAL       4
+   phrase 26:  F   OP1                  2
+   phrase 27:  F   OP2  F               3
+   phrase 28:  F   OP2  VAL             3
+   phrase 29:  VAL  OP2  F              3
+   phrase 30:  VAL  OP2  VAL            3
+   phrase 31:  VAL  [X]                 2
+   phrase 32:  SYM  [X]  ←    VAL       4
+   phrase 33:  F   SYM                  2
+   phrase 34:  OP1  SYM                 2
+   phrase 35:  VAL  ←    VAL            3
+   phrase 36:  SYM  ←    VAL            3
+   phrase 37:  ]                        1
+   phrase 38:  [ ;  PIDX                2
+   phrase 39:  [ ;  VAL  PIDX           3
+   phrase 40:  VAL  VAL                 2
+   phrase 41:  SYM  )    ←    VAL       4
+   phrase 42:  END  VOID                2
+   phrase 43:  END  VAL                 2
+   phrase 44:  END  →    VAL            3
+   phrase 45:  END  →                   2
+   phrase 46:  RET                      1
+   phrase 47:  RET  VAL                 2
+   phrase 48:  RET  →                   2
+   phrase 49:  RET  →    VAL            3
+   --------------------------------------
+
+   *** phrase table ***/
+
+
+#ifndef PH
+
+   void reduce____();                ///< reduce phrase    
+   void reduce_LPAR_B_RPAR_();       ///< reduce phrase LPAR B RPAR 
+   void reduce_LPAR_F_RPAR_();       ///< reduce phrase LPAR F RPAR 
+   void reduce_N___();               ///< reduce phrase N   
+   void reduce_MISC_F_B_();          ///< reduce phrase ASS F B 
+   void reduce_MISC_F_C_B();         ///< reduce phrase ASS F C B
+   void reduce_A_F_B_();             ///< reduce phrase A F B 
+   void reduce_A_F_C_B();            ///< reduce phrase A F C B
+   void reduce_A_M_B_();             ///< reduce phrase A M B 
+   void reduce_A_M_C_B();            ///< reduce phrase A M C B
+   void reduce_F_M__();              ///< reduce phrase F M  
+   void reduce_F_D_G_();             ///< reduce phrase F D G 
+   void reduce_F_D_B_();             ///< reduce phrase F D B 
+   void reduce_B_D_G_();             ///< reduce phrase B D G 
+   void reduce_B_D_B_();             ///< reduce phrase B D B 
+   void reduce_A_C__();              ///< reduce phrase A C  
+   void reduce_V_C_ASS_B();          ///< reduce phrase V C ASS B
+   void reduce_F_V__();              ///< reduce phrase F V  
+   void reduce_M_V__();              ///< reduce phrase M V  
+   void reduce_A_ASS_B_();           ///< reduce phrase A ASS B 
+   void reduce_V_ASS_B_();           ///< reduce phrase V ASS B 
+   void reduce_RBRA___();            ///< reduce phrase RBRA   
+   void reduce_LBRA_I__();           ///< reduce phrase LBRA I  
+   void reduce_LBRA_B_I_();          ///< reduce phrase LBRA B I 
+   void reduce_A_B__();              ///< reduce phrase A B  
+   void reduce_V_RPAR_ASS_B();       ///< reduce phrase V RPAR ASS B
+   void reduce_END_VOID__();         ///< reduce phrase END VOID  
+   void reduce_END_B__();            ///< reduce phrase END B  
+   void reduce_END_GOTO_B_();        ///< reduce phrase END GOTO B 
+   void reduce_END_GOTO__();         ///< reduce phrase END GOTO  
+   void reduce_RETC___();            ///< reduce phrase RETC   
+   void reduce_RETC_B__();           ///< reduce phrase RETC B  
+   void reduce_RETC_GOTO__();        ///< reduce phrase RETC GOTO  
+   void reduce_RETC_GOTO_B_();       ///< reduce phrase RETC GOTO B 
+
+   enum { PHRASE_COUNT   = 50,      ///< number of phrases
+          PHRASE_MODU    = 283,     ///< hash table size
+          MAX_PHRASE_LEN = 4 };     ///< max. number of token in a phrase
+
+   /// one phrase in the phrase table
+   struct Phrase
+      {
+        const char *   phrase_name;     ///< phrase name
+        int            idx;             ///< phrase hash
+        int            prio;            ///< phrase priority
+        int            misc;            ///< 1 if MISC phrase
+        int            phrase_len;      ///< phrase length
+        void (Prefix::*reduce_fun)();   ///< reduce function
+        const char *   reduce_name;     ///< reduce function name
+      };
+
+      /// a hash table with all valid phrases (and many invalid entries)
+      static const Phrase hash_table[PHRASE_MODU];
+
+#define PH(name, idx, prio, misc, len, fun) \
+   { #name, idx, prio, misc, len, &Prefix::reduce_ ## fun, #fun },
+
+#else  // PH defined
+
+const Prefix::Phrase Prefix::hash_table[PHRASE_MODU] =
+{
+  //  phrase_name      hash  prio misc len  reduce_XXX()
+  //  --------------------------------------------------
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( RBRA         ,      4,    1,   0,  1, RBRA___      )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( N            ,      6,    1,   0,  1, N___         )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( F M          ,    295,   42,   0,  2, F_M__        )
+  PH( RETC         ,     13,    1,   0,  1, RETC___      )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( ASS F B      ,  15585,   22,   1,  3, MISC_F_B_    )
+  PH( GOTO F B     ,  15586,   22,   1,  3, MISC_F_B_    )
+  PH( LBRA F B     ,  15587,   22,   1,  3, MISC_F_B_    )
+  PH( RBRA F B     ,  15588,   22,   1,  3, MISC_F_B_    )
+  PH( END F B      ,  15589,   22,   1,  3, MISC_F_B_    )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( F F B        ,  15591,   22,   1,  3, MISC_F_B_    )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( M F B        ,  15593,   22,   1,  3, MISC_F_B_    )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( LPAR F B     ,  15595,   22,   1,  3, MISC_F_B_    )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( RETC F B     ,  15597,   22,   1,  3, MISC_F_B_    )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( A F B        ,  15599,   33,   0,  3, A_F_B_       )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( LPAR B RPAR  ,  12779,    3,   0,  3, LPAR_B_RPAR_ )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( END GOTO     ,     69,    2,   0,  2, END_GOTO__   )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( LPAR F RPAR  ,  12523,    3,   0,  3, LPAR_F_RPAR_ )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( RETC GOTO    ,     77,    2,   0,  2, RETC_GOTO__  )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( A M B        ,  15663,   33,   0,  3, A_M_B_       )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( V C ASS B    ,  492814,   84,   0,  4, V_C_ASS_B    )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( F D B        ,  15687,   63,   0,  3, F_D_B_       )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( V ASS B      ,  15406,   73,   0,  3, V_ASS_B_     )
+  PH( A ASS B      ,  15407,   73,   0,  3, A_ASS_B_     )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( B D B        ,  15695,   63,   0,  3, B_D_B_       )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( F D G        ,   7495,   63,   0,  3, F_D_G_       )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( B D G        ,   7503,   63,   0,  3, B_D_G_       )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( END GOTO B   ,  15429,    3,   0,  3, END_GOTO_B_  )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( RETC GOTO B  ,  15437,    3,   0,  3, RETC_GOTO_B_ )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( ASS F C B    ,  499937,   23,   1,  4, MISC_F_C_B   )
+  PH( GOTO F C B   ,  499938,   23,   1,  4, MISC_F_C_B   )
+  PH( LBRA F C B   ,  499939,   23,   1,  4, MISC_F_C_B   )
+  PH( RBRA F C B   ,  499940,   23,   1,  4, MISC_F_C_B   )
+  PH( END F C B    ,  499941,   23,   1,  4, MISC_F_C_B   )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( F F C B      ,  499943,   23,   1,  4, MISC_F_C_B   )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( M F C B      ,  499945,   23,   1,  4, MISC_F_C_B   )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( LPAR F C B   ,  499947,   23,   1,  4, MISC_F_C_B   )
+  PH( LBRA B I     ,  16867,    3,   0,  3, LBRA_B_I_    )
+  PH( RETC F C B   ,  499949,   23,   1,  4, MISC_F_C_B   )
+  PH( F V          ,    455,   22,   0,  2, F_V__        )
+  PH( A F C B      ,  499951,   34,   0,  4, A_F_C_B      )
+  PH( M V          ,    457,   22,   0,  2, M_V__        )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( END B        ,    485,    2,   0,  2, END_B__      )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( RETC B       ,    493,    2,   0,  2, RETC_B__     )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( A B          ,    495,   52,   0,  2, A_B__        )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( LBRA I       ,    515,    2,   0,  2, LBRA_I__     )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( A M C B      ,  500015,   34,   0,  4, A_M_C_B      )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( V RPAR ASS B ,  492942,   52,   0,  4, V_RPAR_ASS_B )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( END VOID     ,    549,    2,   0,  2, END_VOID__   )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH( A C          ,    271,   82,   0,  2, A_C__        )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+  PH(              ,      0,    0,   0,  0, ___          )
+};
+
+#undef PH
+
+#endif   // PH defined
+

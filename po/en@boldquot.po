@@ -1,0 +1,332 @@
+# English translations for GNU APL package.
+# Copyright (C) 2014 Free Software Foundation, Inc.
+# This file is distributed under the same license as the GNU APL package.
+# Automatically generated, 2014.
+#
+# All this catalog "translates" are quotation characters.
+# The msgids must be ASCII and therefore cannot contain real quotation
+# characters, only substitutes like grave accent (0x60), apostrophe (0x27)
+# and double quote (0x22). These substitutes look strange; see
+# http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
+#
+# This catalog translates grave accent (0x60) and apostrophe (0x27) to
+# left single quotation mark (U+2018) and right single quotation mark (U+2019).
+# It also translates pairs of apostrophe (0x27) to
+# left single quotation mark (U+2018) and right single quotation mark (U+2019)
+# and pairs of quotation mark (0x22) to
+# left double quotation mark (U+201C) and right double quotation mark (U+201D).
+#
+# When output to an UTF-8 terminal, the quotation characters appear perfectly.
+# When output to an ISO-8859-1 terminal, the single quotation marks are
+# transliterated to apostrophes (by iconv in glibc 2.2 or newer) or to
+# grave/acute accent (by libiconv), and the double quotation marks are
+# transliterated to 0x22.
+# When output to an ASCII terminal, the single quotation marks are
+# transliterated to apostrophes, and the double quotation marks are
+# transliterated to 0x22.
+#
+# This catalog furthermore displays the text between the quotation marks in
+# bold face, assuming the VT100/XTerm escape sequences.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: apl 1.2\n"
+"Report-Msgid-Bugs-To: bug-apl@gnu.org\n"
+"POT-Creation-Date: 2014-01-13 19:34+0100\n"
+"PO-Revision-Date: 2014-01-13 19:34+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Command.cc:87 src/Command.cc:369 src/Command.cc:378 src/Command.cc:468
+#: src/Command.cc:687
+msgid "BAD COMMAND"
+msgstr "BAD COMMAND"
+
+#: src/Command.cc:118
+msgid "SYNTAX ERROR"
+msgstr "SYNTAX ERROR"
+
+#: src/Command.cc:137
+msgid "main: Parse error."
+msgstr "main: Parse error."
+
+#: src/Command.cc:245
+msgid "empty branch (→⍳0) without suspended function"
+msgstr "empty branch (→⍳0) without suspended function"
+
+#: src/Command.cc:319
+#, c-format
+msgid "WARNING - %d stale functions (%serased)"
+msgstr "WARNING - %d stale functions (%serased)"
+
+#: src/Command.cc:323
+msgid "OK      - no stale functions"
+msgstr "OK      - no stale functions"
+
+#: src/Command.cc:331
+#, c-format
+msgid "ERROR   - %d stale values"
+msgstr "ERROR   - %d stale values"
+
+#: src/Command.cc:334
+msgid "OK      - no stale values"
+msgstr "OK      - no stale values"
+
+#: src/Command.cc:341
+#, c-format
+msgid "ERROR   - %d stale indices"
+msgstr "ERROR   - %d stale indices"
+
+#: src/Command.cc:344
+msgid "OK      - no stale indices"
+msgstr "OK      - no stale indices"
+
+#: src/Command.cc:372
+msgid "missing workspace name in command )DROP"
+msgstr "missing workspace name in command )DROP"
+
+#: src/Command.cc:381
+msgid "too many parameters in command )DROP"
+msgstr "too many parameters in command )DROP"
+
+#: src/Command.cc:396
+msgid " NOT DROPPED: "
+msgstr " NOT DROPPED: "
+
+#: src/Command.cc:399
+msgid "could not unlink file "
+msgstr "could not unlink file "
+
+#: src/Command.cc:413
+msgid "US Keyboard Layout:"
+msgstr "US Keyboard Layout:"
+
+#: src/Command.cc:434
+msgid "Commands are:"
+msgstr "Commands are:"
+
+#: src/Command.cc:448
+msgid ")HOST command failed: "
+msgstr ")HOST command failed: "
+
+#: src/Command.cc:470
+msgid "missing filename in command )IN"
+msgstr "missing filename in command )IN"
+
+#: src/Command.cc:484 src/Command.cc:702
+msgid " failed: "
+msgstr " failed: "
+
+#: src/Command.cc:488
+#, c-format
+msgid "command )IN: could not open file %s for reading: %s"
+msgstr "command )IN: could not open file %s for reading: %s"
+
+#: src/Command.cc:528
+msgid "BAD record charset (neither ASCII nor EBCDIC)"
+msgstr "BAD record charset (neither ASCII nor EBCDIC)"
+
+#: src/Command.cc:593
+msgid "IMPROPER LIBRARY REFERENCE"
+msgstr "IMPROPER LIBRARY REFERENCE"
+
+#: src/Command.cc:598
+#, c-format
+msgid "path %s: could not be openend as directory: %s"
+msgstr "path %s: could not be openend as directory: %s"
+
+#: src/Command.cc:642
+msgid ""
+"Command ]LOG is not available, since dynamic logging was not\n"
+"configured for this APL interpreter. To enable dynamic logging (which\n"
+"will decrease performance), recompile the interpreter as follows:"
+msgstr ""
+"Command ]LOG is not available, since dynamic logging was not\n"
+"configured for this APL interpreter. To enable dynamic logging (which\n"
+"will decrease performance), recompile the interpreter as follows:"
+
+#: src/Command.cc:648
+msgid "other configure options"
+msgstr "other configure options"
+
+#: src/Command.cc:654
+msgid "above the src directory."
+msgstr "above the src directory."
+
+#: src/Command.cc:665
+msgid "NO MORE ERROR INFO"
+msgstr "NO MORE ERROR INFO"
+
+#: src/Command.cc:678
+msgid "Goodbye."
+msgstr "Goodbye."
+
+#: src/Command.cc:689
+msgid "missing filename in command )OUT"
+msgstr "missing filename in command )OUT"
+
+#: src/Command.cc:705
+#, c-format
+msgid "command )OUT: could not open file %s for writing: %s"
+msgstr "command )OUT: could not open file %s for writing: %s"
+
+#: src/Command.cc:771
+msgid " *** bad sub-record of *"
+msgstr " *** bad sub-record of *"
+
+#: src/Command.cc:774
+msgid " comment"
+msgstr " comment"
+
+#: src/Command.cc:776
+msgid " timestamp"
+msgstr " timestamp"
+
+#: src/Command.cc:788
+msgid " imbed"
+msgstr " imbed"
+
+#: src/Command.cc:791
+msgid "record #"
+msgstr "record #"
+
+#: src/Command.cc:801
+msgid " *** bad sub-record of X"
+msgstr " *** bad sub-record of X"
+
+#: src/Error.cc:73
+msgid "Unknown Error"
+msgstr "Unknown Error"
+
+#: src/main.cc:295
+msgid " (default)"
+msgstr " (default)"
+
+#: src/main.cc:306
+msgid "configurable options:"
+msgstr "configurable options:"
+
+#: src/main.cc:339
+msgid ", therefore:"
+msgstr ", therefore:"
+
+#: src/main.cc:382
+#, c-format
+msgid ""
+"usage: %s [options]\n"
+"    options: \n"
+"    -h, --help           print this help\n"
+"    -d                   run in the background (i.e. as daemon)\n"
+"    -f file              read input from file (after all -T files)\n"
+"    --id proc            use processor ID proc (default: first unused > "
+"1000)\n"
+msgstr ""
+"usage: %s [options]\n"
+"    options: \n"
+"    -h, --help           print this help\n"
+"    -d                   run in the background (i.e. as daemon)\n"
+"    -f file              read input from file (after all -T files)\n"
+"    --id proc            use processor ID proc (default: first unused > "
+"1000)\n"
+
+#: src/main.cc:392
+#, c-format
+msgid "    -l num               turn log facility num (1-%d) ON\n"
+msgstr "    -l num               turn log facility num (1-%d) ON\n"
+
+#: src/main.cc:398
+#, c-format
+msgid ""
+"    --par proc           use processor parent ID proc (default: no parent)\n"
+"    -w milli             wait milli milliseconds at startup\n"
+"    --noCIN              do not echo input(for scripting)\n"
+"    --rawCIN             do not use the readline lib for input\n"
+"    --[no]Color          start with ]XTERM ON [OFF])\n"
+"    --noCONT             do not load CONTINUE workspace on startup)\n"
+"    --emacs              run in emacs mode\n"
+"    --[no]SV             [do not] start APnnn (a shared variable server)\n"
+"    --cfg                show ./configure options used and exit\n"
+"    --gpl                show license (GPL) and exit\n"
+"    --silent             do not show the welcome message\n"
+"    -s, --script         same as --silent --noCIN --noCONT --noColor -f -\n"
+"    -v, --version        show version information and exit\n"
+"    -T testcases ...     run testcases\n"
+"    --TM mode            test mode (for -T files):\n"
+"                         0:   (default) exit after last testcase\n"
+"                         1:   exit after last testcase if no error\n"
+"                         2:   continue (don't exit) after last testcase\n"
+"                         3:   stop testcases after first error (don't exit)\n"
+"                         4:   exit after first error\n"
+"    --TR                 randomize order of testfiles\n"
+"    --TS                 append to (rather than override) summary.log\n"
+"    --                   end of options for %s\n"
+msgstr ""
+"    --par proc           use processor parent ID proc (default: no parent)\n"
+"    -w milli             wait milli milliseconds at startup\n"
+"    --noCIN              do not echo input(for scripting)\n"
+"    --rawCIN             do not use the readline lib for input\n"
+"    --[no]Color          start with ]XTERM ON [OFF])\n"
+"    --noCONT             do not load CONTINUE workspace on startup)\n"
+"    --emacs              run in emacs mode\n"
+"    --[no]SV             [do not] start APnnn (a shared variable server)\n"
+"    --cfg                show ./configure options used and exit\n"
+"    --gpl                show license (GPL) and exit\n"
+"    --silent             do not show the welcome message\n"
+"    -s, --script         same as --silent --noCIN --noCONT --noColor -f -\n"
+"    -v, --version        show version information and exit\n"
+"    -T testcases ...     run testcases\n"
+"    --TM mode            test mode (for -T files):\n"
+"                         0:   (default) exit after last testcase\n"
+"                         1:   exit after last testcase if no error\n"
+"                         2:   continue (don't exit) after last testcase\n"
+"                         3:   stop testcases after first error (don't exit)\n"
+"                         4:   exit after first error\n"
+"    --TR                 randomize order of testfiles\n"
+"    --TS                 append to (rather than override) summary.log\n"
+"    --                   end of options for %s\n"
+
+#: src/main.cc:460
+#, c-format
+msgid "Welcome to GNU APL version %s"
+msgstr "Welcome to GNU APL version %s"
+
+#: src/main.cc:461
+#, c-format
+msgid "for details run: %s --gpl."
+msgstr "for details run: %s --gpl."
+
+#: src/main.cc:480
+msgid "This program comes with ABSOLUTELY NO WARRANTY;"
+msgstr "This program comes with ABSOLUTELY NO WARRANTY;"
+
+#: src/main.cc:483
+msgid "This program is free software, and you are welcome to redistribute it"
+msgstr "This program is free software, and you are welcome to redistribute it"
+
+#: src/main.cc:484
+msgid "according to the GNU Public License (GPL) version 3 or later."
+msgstr "according to the GNU Public License (GPL) version 3 or later."
+
+#: src/main.cc:879
+msgid "-f without filename"
+msgstr "-f without filename"
+
+#: src/main.cc:912
+msgid "-l without log facility"
+msgstr "-l without log facility"
+
+#: src/main.cc:1005
+msgid "--TM without test mode"
+msgstr "--TM without test mode"
+
+#: src/main.cc:1028
+msgid "-w without milli(seconds)"
+msgstr "-w without milli(seconds)"
+
+#: src/main.cc:1034
+msgid "unknown option '"
+msgstr "unknown option '"

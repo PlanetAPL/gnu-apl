@@ -1,0 +1,515 @@
+# messages of the GNU APL interpreter
+# Copyright (C) 2013 THE GNU APL'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the GNU APL package.
+# Dr. Jürgen Sauermann <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU APL 1.0\n"
+"Report-Msgid-Bugs-To: bug-apl@gnu.org\n"
+"POT-Creation-Date: 2014-01-13 19:34+0100\n"
+"PO-Revision-Date: 2013-09-15 14:04+0200\n"
+"Last-Translator: Juergen <eedjsa@localhost>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# # Kommandos
+#: src/Command.cc:87 src/Command.cc:369 src/Command.cc:378 src/Command.cc:468
+#: src/Command.cc:687
+msgid "BAD COMMAND"
+msgstr "FEHLERHAFTES KOMMANDO"
+
+#: src/Command.cc:118
+msgid "SYNTAX ERROR"
+msgstr "FEHLERHAFTE SYNTAX"
+
+#: src/Command.cc:137
+msgid "main: Parse error."
+msgstr "main: Fehler beim parsen."
+
+#: src/Command.cc:245
+msgid "empty branch (→⍳0) without suspended function"
+msgstr "leerer Sprung (→⍳0) ohne suspendierte Function"
+
+#: src/Command.cc:319
+#, c-format
+msgid "WARNING - %d stale functions (%serased)"
+msgstr "WARNUNG - %d stale functions (%sgelöscht)"
+
+#: src/Command.cc:323
+msgid "OK      - no stale functions"
+msgstr "OK      - keine stale functions"
+
+#: src/Command.cc:331
+#, c-format
+msgid "ERROR   - %d stale values"
+msgstr "FEHLER  - %d stale Werte"
+
+#: src/Command.cc:334
+msgid "OK      - no stale values"
+msgstr "OK      - keine stale values"
+
+#: src/Command.cc:341
+#, c-format
+msgid "ERROR   - %d stale indices"
+msgstr "ERROR   - %d stale Indexwerte"
+
+#: src/Command.cc:344
+msgid "OK      - no stale indices"
+msgstr "OK      - keine stale Indexwerte"
+
+#: src/Command.cc:372
+msgid "missing workspace name in command )DROP"
+msgstr "fehlender Workspace-Name in Kommando )DROP"
+
+#: src/Command.cc:381
+msgid "too many parameters in command )DROP"
+msgstr "zu viele Parameter in Kommando )DROP"
+
+#: src/Command.cc:396
+msgid " NOT DROPPED: "
+msgstr "NICHT GELÖSCHT"
+
+#: src/Command.cc:399
+msgid "could not unlink file "
+msgstr "konnte Datei nicht löschen"
+
+#: src/Command.cc:413
+msgid "US Keyboard Layout:"
+msgstr "US Tastatur Layout:"
+
+#: src/Command.cc:434
+msgid "Commands are:"
+msgstr "Gültige Kommandos:"
+
+#: src/Command.cc:448
+msgid ")HOST command failed: "
+msgstr ")HOST Kommando fehlgeschlagen: "
+
+#: src/Command.cc:470
+msgid "missing filename in command )IN"
+msgstr "fehlender Dateiname im Kommando )IN"
+
+#: src/Command.cc:484 src/Command.cc:702
+msgid " failed: "
+msgstr " fehlgeschlagen: "
+
+#: src/Command.cc:488
+#, c-format
+msgid "command )IN: could not open file %s for reading: %s"
+msgstr "Kommando )IN: konnte Datei %s nicht zum Lesen öffnen: %s"
+
+#: src/Command.cc:528
+msgid "BAD record charset (neither ASCII nor EBCDIC)"
+msgstr "Ungütltiger Zeichensatz (weder ASCII noch EBCDIC)"
+
+#: src/Command.cc:593
+msgid "IMPROPER LIBRARY REFERENCE"
+msgstr "UNGÜLTIGE BIBLIOTHEK"
+
+#: src/Command.cc:598
+#, c-format
+msgid "path %s: could not be openend as directory: %s"
+msgstr "Pfad %s konnte nicht als Verzeichnis geöffnet werden: %s"
+
+#: src/Command.cc:642
+msgid ""
+"Command ]LOG is not available, since dynamic logging was not\n"
+"configured for this APL interpreter. To enable dynamic logging (which\n"
+"will decrease performance), recompile the interpreter as follows:"
+msgstr ""
+"Das Kommando ]LOG  ist nicht verfügbar weil dieser APL interpreter nicht "
+"dafür konfiguriert war. Um dynamisches Loggen einzuschalten (beinträchtigt\n"
+" die Leistung des Interpreter) muß GNU APL folgendermaßen recompiliert "
+"werden:"
+
+#: src/Command.cc:648
+msgid "other configure options"
+msgstr "andere configure Optionen"
+
+#: src/Command.cc:654
+msgid "above the src directory."
+msgstr "oberhalb des Verzeichnisses src."
+
+#: src/Command.cc:665
+msgid "NO MORE ERROR INFO"
+msgstr "KEINE ZUSÄTZLICHEN FEHLERINFORMATIONEN"
+
+#: src/Command.cc:678
+msgid "Goodbye."
+msgstr "Und Tschüß."
+
+#: src/Command.cc:689
+msgid "missing filename in command )OUT"
+msgstr "fehkender Dateiname im Kommando )OUT"
+
+#: src/Command.cc:705
+#, c-format
+msgid "command )OUT: could not open file %s for writing: %s"
+msgstr "Kommando )OUT: konnte Datei %s nicht zum Schreiben öffnen: %s"
+
+#: src/Command.cc:771
+msgid " *** bad sub-record of *"
+msgstr "*** ungültiges sub-record von *"
+
+#: src/Command.cc:774
+msgid " comment"
+msgstr " Kommentar"
+
+#: src/Command.cc:776
+msgid " timestamp"
+msgstr " Zeitstempel"
+
+#: src/Command.cc:788
+msgid " imbed"
+msgstr "i eingebettet"
+
+#: src/Command.cc:791
+msgid "record #"
+msgstr "Record #"
+
+#: src/Command.cc:801
+msgid " *** bad sub-record of X"
+msgstr "*** ungültiges sub-record von X"
+
+#: src/Error.cc:73
+msgid "Unknown Error"
+msgstr "Unbekannter Fehler"
+
+# # main
+#: src/main.cc:295
+msgid " (default)"
+msgstr " (Standardeinstellung)"
+
+#: src/main.cc:306
+msgid "configurable options:"
+msgstr "konfigurierbare Optionen:"
+
+#: src/main.cc:339
+msgid ", therefore:"
+msgstr ", folglich:"
+
+#: src/main.cc:382
+#, c-format
+msgid ""
+"usage: %s [options]\n"
+"    options: \n"
+"    -h, --help           print this help\n"
+"    -d                   run in the background (i.e. as daemon)\n"
+"    -f file              read input from file (after all -T files)\n"
+"    --id proc            use processor ID proc (default: first unused > "
+"1000)\n"
+msgstr ""
+"Aufruf: %s [Optionen]\n"
+"    Optionen: \n"
+"    -h, --help           diese Hilfe anzeigen\n"
+"    -d                   im Hintergrund (d.h. als Dämon) ausführen\n"
+"    -f file              Eingaben von Datei file lesen (nach allen -T "
+"Dateien)\n"
+"    --id proc            Prozessor ID proc benutzen (Standard: erste "
+"unbenutzte ID > 1000)\n"
+
+#: src/main.cc:392
+#, c-format
+msgid "    -l num               turn log facility num (1-%d) ON\n"
+msgstr "    -l num               Logeinrichtung num (1-%d) AN\n"
+
+#: src/main.cc:398
+#, fuzzy, c-format
+msgid ""
+"    --par proc           use processor parent ID proc (default: no parent)\n"
+"    -w milli             wait milli milliseconds at startup\n"
+"    --noCIN              do not echo input(for scripting)\n"
+"    --rawCIN             do not use the readline lib for input\n"
+"    --[no]Color          start with ]XTERM ON [OFF])\n"
+"    --noCONT             do not load CONTINUE workspace on startup)\n"
+"    --emacs              run in emacs mode\n"
+"    --[no]SV             [do not] start APnnn (a shared variable server)\n"
+"    --cfg                show ./configure options used and exit\n"
+"    --gpl                show license (GPL) and exit\n"
+"    --silent             do not show the welcome message\n"
+"    -s, --script         same as --silent --noCIN --noCONT --noColor -f -\n"
+"    -v, --version        show version information and exit\n"
+"    -T testcases ...     run testcases\n"
+"    --TM mode            test mode (for -T files):\n"
+"                         0:   (default) exit after last testcase\n"
+"                         1:   exit after last testcase if no error\n"
+"                         2:   continue (don't exit) after last testcase\n"
+"                         3:   stop testcases after first error (don't exit)\n"
+"                         4:   exit after first error\n"
+"    --TR                 randomize order of testfiles\n"
+"    --TS                 append to (rather than override) summary.log\n"
+"    --                   end of options for %s\n"
+msgstr ""
+"    --par proc           benutze Prozessor Eltern ID proc (Standard: keine)\n"
+"    -w milli             warte milli Millisekunden beim Start\n"
+"    --noCIN              kein Echo der Eingabe (für Scripting)\n"
+"    --noCONT             Workspace CONTINUE nicht automatisch laden)\n"
+"    --noSV               APnnn nicht starten (ein Server Prozeß für Shared "
+"Variablen)\n"
+"    --cfg                ./configure Optionen anzeigen und beenden\n"
+"    --gpl                Lizenz (GPL) anzeigen und beenden\n"
+"    --silent             Begrüßung unterfrücken\n"
+"    -s, --script         Abkürzung für --silent --noCIN --noCONT -f -\n"
+"    -v, --version        Versions Information anzeigen und beenden\n"
+"    -T testcases ...     Testcases ausführen\n"
+"    --TM mode            Test Modus (for -T Dateien):\n"
+"                         0:   (Standard) nach letztem Testcase beenden\n"
+"                         1:   nach letztem Testcase beenden wenn kein "
+"Fehler\n"
+"                         2:   nach letztem Testcase fortfahren\n"
+"                         3:   nach erstem Fehler anhalten (nicht beenden)\n"
+"                         4:   nach erstem Fehler beenden\n"
+"    --TS                 Testerggebnisse an summary.log anhängen statt zu "
+"überschreiben\n"
+"    --                   Ende der Optionen für %s\n"
+
+#: src/main.cc:460
+#, c-format
+msgid "Welcome to GNU APL version %s"
+msgstr "Willkommen bei GNU APL Version %s"
+
+#: src/main.cc:461
+#, c-format
+msgid "for details run: %s --gpl."
+msgstr "für Einzelheiten führen Sie bitte %s --gpl aus."
+
+#: src/main.cc:480
+msgid "This program comes with ABSOLUTELY NO WARRANTY;"
+msgstr "Für dieses Programm werden KEINERLEI GARANTIEN übernommen;"
+
+#: src/main.cc:483
+msgid "This program is free software, and you are welcome to redistribute it"
+msgstr ""
+"Dieses Programm ist freie Software und kann gerne gemäß den Bedingungen"
+
+#: src/main.cc:484
+msgid "according to the GNU Public License (GPL) version 3 or later."
+msgstr "der GNU Public License (GPL) Version 3 or später verbreitet werden."
+
+#: src/main.cc:879
+msgid "-f without filename"
+msgstr "-f ohne Dateiname"
+
+#: src/main.cc:912
+msgid "-l without log facility"
+msgstr "-l ohne Logeinrichtung"
+
+#: src/main.cc:1005
+msgid "--TM without test mode"
+msgstr "--TM ohne Testmode"
+
+#: src/main.cc:1028
+msgid "-w without milli(seconds)"
+msgstr "-w ohne Millisekunden"
+
+#: src/main.cc:1034
+msgid "unknown option '"
+msgstr "Unbekannte Option '"
+
+#~ msgid "*** Another APL interpreter with --id "
+#~ msgstr "*** Ein anderer APL interpreter mit --id "
+
+#~ msgid " is already running"
+#~ msgstr " läuft vielleicht schon"
+
+#~ msgid "No Error"
+#~ msgstr "Kein Fehler"
+
+#~ msgid "User defined error"
+#~ msgstr "Benutzerdefinierter Fehler"
+
+#~ msgid "ENTRY ERROR"
+#~ msgstr "FEHLERHAFTE EINGABE"
+
+#~ msgid "INCORRECT COMMAND"
+#~ msgstr "UNGÜLTIGES KOMMANDO"
+
+#~ msgid "LIBRARY I/O ERROR"
+#~ msgstr "SCHREIB/LESEFEHLER BEI BIBLIOTHEK"
+
+#~ msgid "LIBRARY NOT AVAILABLE"
+#~ msgstr "BIBLIOTHEK NICHT VERFÜGBAR"
+
+#~ msgid "WS NOT FOUND (open)"
+#~ msgstr "WORKSPACE NICHT GEFUNDEN (Funktion 'open')"
+
+#~ msgid "WS NOT FOUND (fstat)"
+#~ msgstr "WORKSPACE NICHT GEFUNDEN (Funktion 'fstat()')"
+
+#~ msgid "WS NOT FOUND (mmap)"
+#~ msgstr "WORKSPACE NICHT GEFUNDEN (Funktion 'mmap()')"
+
+#~ msgid "NOT YET IMPLEMENTED"
+#~ msgstr "NOCH NICHT IMPLEMENTIERT"
+
+#~ msgid "THIS IS A BUG !!!"
+#~ msgstr "DIES IST EIN FEHLER IN GNU APL"
+
+#~ msgid "Assertion failed"
+#~ msgstr "Annahme verletzt"
+
+#~ msgid "DEFN ERROR"
+#~ msgstr "FEHLER BEI DEFINIERTER FUNKTION"
+
+#~ msgid "Internal Error"
+#~ msgstr "Interner Fehler"
+
+#~ msgid "INTERRUPT"
+#~ msgstr "UNTERBROCHEN"
+
+#~ msgid "SYSTEM ERROR"
+#~ msgstr "SYSTEM FEHLER"
+
+#~ msgid "WS FULL"
+#~ msgstr "WORKSPACE VOLL"
+
+#~ msgid "SYSTEM LIMIT (symbol table)"
+#~ msgstr "SYSTEMGRENZE ERREICHT (Symboltabelle)"
+
+#~ msgid "SYSTEM LIMIT (rank)"
+#~ msgstr "SYSTEMGRENZE ERREICHT (Anzahl der Dimensionen)"
+
+#~ msgid "SYSTEM LIMIT (filename)"
+#~ msgstr "SYSTEMGRENZE ERREICHT (Länge des Dateinamens)"
+
+#~ msgid "SYSTEM LIMIT (fun_oper)"
+#~ msgstr "SYSTEMGRENZE ERREICHT (Operandenschachtelung)"
+
+#~ msgid "ATTENTION"
+#~ msgstr "ACHTUNG"
+
+#~ msgid "No token"
+#~ msgstr "Kein Token"
+
+#~ msgid "Bad UTF-8 starting character"
+#~ msgstr "Ungültiges Startbyte in UTF-8 string"
+
+#~ msgid "Bad UTF-8 cont. character"
+#~ msgstr "Ungültiges Folgebyte in UTF-8 string"
+
+#~ msgid "Unsupported character"
+#~ msgstr "Nicht unterstützter Buchstabe"
+
+#~ msgid "Non-APL character"
+#~ msgstr "Kein APL Buchstabe"
+
+#~ msgid "Bad number"
+#~ msgstr "Ungültige Zahl"
+
+#~ msgid "Bad char in execute"
+#~ msgstr "Ungültige Zahl in Function 'execute'"
+
+#~ msgid "No string end found"
+#~ msgstr "Ende der Zeichenkette nicht gefunden"
+
+#~ msgid "String not UNICODE"
+#~ msgstr "Keine UNICODE Zeichenkette"
+
+#~ msgid "No opening parenthesis"
+#~ msgstr "Keine öffnende Klammer"
+
+#~ msgid "No closing parenthesis"
+#~ msgstr "Keine schließende Klammer"
+
+#~ msgid "No opening bracket"
+#~ msgstr "Keine öffnende eckige Klammer"
+
+#~ msgid "No closing bracket"
+#~ msgstr "Keine schließende eckige Klammer"
+
+#~ msgid "VALUE ERROR"
+#~ msgstr "FEHLENDER WERT"
+
+#~ msgid "⎕PP ERROR"
+#~ msgstr "⎕PP NICHT DEFINIERT"
+
+#~ msgid "⎕IO ERROR"
+#~ msgstr "⎕IO NICHT DEFINIERT"
+
+#~ msgid "⎕CT ERROR"
+#~ msgstr "⎕CT NICHT DEFINIERT"
+
+#~ msgid "⎕FC ERROR"
+#~ msgstr "⎕FC NICHT DEFINIERT"
+
+#~ msgid "⎕RL ERROR"
+#~ msgstr "⎕RL NICHT DEFINIERT"
+
+#~ msgid "⎕PR ERROR"
+#~ msgstr "⎕PR NICHT DEFINIERT"
+
+#~ msgid "VALENCE ERROR"
+#~ msgstr "FALSCHE ANZAHL VON ARGUMENTEN"
+
+#~ msgid "RANK ERROR"
+#~ msgstr "FALSCHE DIMENSION"
+
+#~ msgid "LENGTH ERROR"
+#~ msgstr "FALSCHE LÄNGE"
+
+#~ msgid "DOMAIN ERROR"
+#~ msgstr "FALSCHER WERT"
+
+#~ msgid "INDEX ERROR"
+#~ msgstr "FALSCHER INDEXWERT"
+
+#~ msgid "AXIS ERROR"
+#~ msgstr "FALSCHER ACHSENWERT"
+
+#~ msgid "not "
+#~ msgstr "nicht "
+
+#~ msgid "LIBRARY ROOT SET TO "
+#~ msgstr "SCHREIB/LESEFEHLER BEI BIBLIOTHEK"
+
+#~ msgid "Library root: "
+#~ msgstr "Bibliotheksverzeichnis: "
+
+#~ msgid "Library numbers:"
+#~ msgstr "Bibliotheken:"
+
+#~ msgid "none  "
+#~ msgstr "keine "
+
+#~ msgid " present"
+#~ msgstr "vorhanden"
+
+#~ msgid "(ON)  "
+#~ msgstr "(AN)"
+
+#~ msgid "(OFF) "
+#~ msgstr "(AUS)"
+
+#~ msgid "    Log facility '"
+#~ msgstr "Log Kanal '"
+
+#~ msgid "' is now "
+#~ msgstr " ist jetzt "
+
+#~ msgid "ON "
+#~ msgstr "AN"
+
+#~ msgid "OFF"
+#~ msgstr "AUS"
+
+#~ msgid " 2 ⎕TF array "
+#~ msgstr "2 ⎕TF Array"
+
+#~ msgid " 1 ⎕TF char array "
+#~ msgstr "1 ⎕TF Zeichenarray"
+
+#~ msgid " 2 ⎕TF function "
+#~ msgstr "2 ⎕TF Function"
+
+#~ msgid " 1 ⎕TF numeric array "
+#~ msgstr "1 ⎕TF Numerisches Array"
+
+#~ msgid "*** bad record type '"
+#~ msgstr "*** ungültiger Record-Typ"
+
+#~ msgid "Bad system variable"
+#~ msgstr "Ungültige Systemvariable"

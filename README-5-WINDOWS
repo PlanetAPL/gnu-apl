@@ -1,0 +1,50 @@
+
+You can run GNU APL on windows by means of CYGWIN:
+
+1. install CYGWIN (see http://www.cygwin.org)
+
+2. Install additional libraries (unless they are installed already)
+    libintl8		e.g. version 0.18.1.1-2
+    liblapack-devel	e.g. version 3.4.2.1
+    libreadline7	e.g. version 6.1.2-3
+    (other libraries may be missing - install them as needed)
+
+3. Follow the standard installation procedure for GNU APL in INSTALL,
+  README-2-configure, and README-3-keyboard.
+
+WARNING: If you are not familiar with CYGWIN (which provides a GNU/Linux look
+         and feel on WINDOWS) then your health is at risk! You may suffer
+         serious depressions after returning to WINDOWS. The only known cure
+         is to permanently stay away from WINDOWs.
+
+The procedure above has been tested with WINDOWS XP and a CYGWIN version
+that has identified itself (via uname -a) as:
+
+	CYGWIN_NT-5.1 Server 1.7.25(0.270/5/3) 2013-08-31 20:39 i686 Cygwin
+
+
+LIMITATIONS: backtraces (Stack dumps after fatal errors) may not work
+because they use a GNU extension that may not be supported on CYGWIN.
+
+NOTE: The procedure described in README-3-keyboard uses the program xmodmap,
+ which only works when xmodmap and GNU APL are started under X (which is
+normally the case for Desktop GNU/Linux distributions). In CYGWIN you can
+start a "Cygwin Terminal" which does NOT run under X. If you run xmodmap
+in the Cygwin Terminal then it complains like this:
+
+ xmodmap: unable to open display ''
+
+This is an indication that X is not running and that your keyboard will
+not produce APL characters. You can still start GNU APL (to check that it
+has compiled properly), but you will be lacking almost all functions.
+
+A case where it makes sense to run GNU APL without X is APL scripts,
+for example CGI scripts for web servers written in APL. These scripts do
+not read input from the keyboard, so it does not matter that the keyboard
+setup is wrong.
+
+Another case is a remote login from machine A to machine B using ssh. In this
+case X should run on machine A (so that the keyboard on A works), but a GNU
+APL on machine B can run without X.
+
+

@@ -1,0 +1,274 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: apl 1.2\n"
+"Report-Msgid-Bugs-To: bug-apl@gnu.org\n"
+"POT-Creation-Date: 2014-01-13 19:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Command.cc:87 src/Command.cc:369 src/Command.cc:378 src/Command.cc:468
+#: src/Command.cc:687
+msgid "BAD COMMAND"
+msgstr ""
+
+#: src/Command.cc:118
+msgid "SYNTAX ERROR"
+msgstr ""
+
+#: src/Command.cc:137
+msgid "main: Parse error."
+msgstr ""
+
+#: src/Command.cc:245
+msgid "empty branch (→⍳0) without suspended function"
+msgstr ""
+
+#: src/Command.cc:319
+#, c-format
+msgid "WARNING - %d stale functions (%serased)"
+msgstr ""
+
+#: src/Command.cc:323
+msgid "OK      - no stale functions"
+msgstr ""
+
+#: src/Command.cc:331
+#, c-format
+msgid "ERROR   - %d stale values"
+msgstr ""
+
+#: src/Command.cc:334
+msgid "OK      - no stale values"
+msgstr ""
+
+#: src/Command.cc:341
+#, c-format
+msgid "ERROR   - %d stale indices"
+msgstr ""
+
+#: src/Command.cc:344
+msgid "OK      - no stale indices"
+msgstr ""
+
+#: src/Command.cc:372
+msgid "missing workspace name in command )DROP"
+msgstr ""
+
+#: src/Command.cc:381
+msgid "too many parameters in command )DROP"
+msgstr ""
+
+#: src/Command.cc:396
+msgid " NOT DROPPED: "
+msgstr ""
+
+#: src/Command.cc:399
+msgid "could not unlink file "
+msgstr ""
+
+#: src/Command.cc:413
+msgid "US Keyboard Layout:"
+msgstr ""
+
+#: src/Command.cc:434
+msgid "Commands are:"
+msgstr ""
+
+#: src/Command.cc:448
+msgid ")HOST command failed: "
+msgstr ""
+
+#: src/Command.cc:470
+msgid "missing filename in command )IN"
+msgstr ""
+
+#: src/Command.cc:484 src/Command.cc:702
+msgid " failed: "
+msgstr ""
+
+#: src/Command.cc:488
+#, c-format
+msgid "command )IN: could not open file %s for reading: %s"
+msgstr ""
+
+#: src/Command.cc:528
+msgid "BAD record charset (neither ASCII nor EBCDIC)"
+msgstr ""
+
+#: src/Command.cc:593
+msgid "IMPROPER LIBRARY REFERENCE"
+msgstr ""
+
+#: src/Command.cc:598
+#, c-format
+msgid "path %s: could not be openend as directory: %s"
+msgstr ""
+
+#: src/Command.cc:642
+msgid ""
+"Command ]LOG is not available, since dynamic logging was not\n"
+"configured for this APL interpreter. To enable dynamic logging (which\n"
+"will decrease performance), recompile the interpreter as follows:"
+msgstr ""
+
+#: src/Command.cc:648
+msgid "other configure options"
+msgstr ""
+
+#: src/Command.cc:654
+msgid "above the src directory."
+msgstr ""
+
+#: src/Command.cc:665
+msgid "NO MORE ERROR INFO"
+msgstr ""
+
+#: src/Command.cc:678
+msgid "Goodbye."
+msgstr ""
+
+#: src/Command.cc:689
+msgid "missing filename in command )OUT"
+msgstr ""
+
+#: src/Command.cc:705
+#, c-format
+msgid "command )OUT: could not open file %s for writing: %s"
+msgstr ""
+
+#: src/Command.cc:771
+msgid " *** bad sub-record of *"
+msgstr ""
+
+#: src/Command.cc:774
+msgid " comment"
+msgstr ""
+
+#: src/Command.cc:776
+msgid " timestamp"
+msgstr ""
+
+#: src/Command.cc:788
+msgid " imbed"
+msgstr ""
+
+#: src/Command.cc:791
+msgid "record #"
+msgstr ""
+
+#: src/Command.cc:801
+msgid " *** bad sub-record of X"
+msgstr ""
+
+#: src/Error.cc:73
+msgid "Unknown Error"
+msgstr ""
+
+#: src/main.cc:295
+msgid " (default)"
+msgstr ""
+
+#: src/main.cc:306
+msgid "configurable options:"
+msgstr ""
+
+#: src/main.cc:339
+msgid ", therefore:"
+msgstr ""
+
+#: src/main.cc:382
+#, c-format
+msgid ""
+"usage: %s [options]\n"
+"    options: \n"
+"    -h, --help           print this help\n"
+"    -d                   run in the background (i.e. as daemon)\n"
+"    -f file              read input from file (after all -T files)\n"
+"    --id proc            use processor ID proc (default: first unused > "
+"1000)\n"
+msgstr ""
+
+#: src/main.cc:392
+#, c-format
+msgid "    -l num               turn log facility num (1-%d) ON\n"
+msgstr ""
+
+#: src/main.cc:398
+#, c-format
+msgid ""
+"    --par proc           use processor parent ID proc (default: no parent)\n"
+"    -w milli             wait milli milliseconds at startup\n"
+"    --noCIN              do not echo input(for scripting)\n"
+"    --rawCIN             do not use the readline lib for input\n"
+"    --[no]Color          start with ]XTERM ON [OFF])\n"
+"    --noCONT             do not load CONTINUE workspace on startup)\n"
+"    --emacs              run in emacs mode\n"
+"    --[no]SV             [do not] start APnnn (a shared variable server)\n"
+"    --cfg                show ./configure options used and exit\n"
+"    --gpl                show license (GPL) and exit\n"
+"    --silent             do not show the welcome message\n"
+"    -s, --script         same as --silent --noCIN --noCONT --noColor -f -\n"
+"    -v, --version        show version information and exit\n"
+"    -T testcases ...     run testcases\n"
+"    --TM mode            test mode (for -T files):\n"
+"                         0:   (default) exit after last testcase\n"
+"                         1:   exit after last testcase if no error\n"
+"                         2:   continue (don't exit) after last testcase\n"
+"                         3:   stop testcases after first error (don't exit)\n"
+"                         4:   exit after first error\n"
+"    --TR                 randomize order of testfiles\n"
+"    --TS                 append to (rather than override) summary.log\n"
+"    --                   end of options for %s\n"
+msgstr ""
+
+#: src/main.cc:460
+#, c-format
+msgid "Welcome to GNU APL version %s"
+msgstr ""
+
+#: src/main.cc:461
+#, c-format
+msgid "for details run: %s --gpl."
+msgstr ""
+
+#: src/main.cc:480
+msgid "This program comes with ABSOLUTELY NO WARRANTY;"
+msgstr ""
+
+#: src/main.cc:483
+msgid "This program is free software, and you are welcome to redistribute it"
+msgstr ""
+
+#: src/main.cc:484
+msgid "according to the GNU Public License (GPL) version 3 or later."
+msgstr ""
+
+#: src/main.cc:879
+msgid "-f without filename"
+msgstr ""
+
+#: src/main.cc:912
+msgid "-l without log facility"
+msgstr ""
+
+#: src/main.cc:1005
+msgid "--TM without test mode"
+msgstr ""
+
+#: src/main.cc:1028
+msgid "-w without milli(seconds)"
+msgstr ""
+
+#: src/main.cc:1034
+msgid "unknown option '"
+msgstr ""

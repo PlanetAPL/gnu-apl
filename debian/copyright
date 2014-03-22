@@ -1,0 +1,25 @@
+This work was packaged for Debian by:
+
+    Jürgen Sauermann<bug-apl@gnu.org> on Wed, 04 Sep 2013 20:11:53 +0200
+
+It was downloaded from <www.gnu.org/software/apl>
+
+Upstream Author(s):
+
+    Jürgen Sauermann<bug-apl@gnu.org> on Wed, 04 Sep 2013 20:11:53 +0200
+
+Copyright:
+
+    <Copyright (C) 2008-2013 Dr. Jürgen Sauermann
+
+License:
+
+    GPL-3+
+
+The Debian packaging is:
+
+    Copyright (C) 2013 Jürgen Sauermann<bug-apl@gnu.org>
+
+and is licensed under the GPL version 3 or later.
+see `/usr/share/common-licenses/GPL-3'.
+

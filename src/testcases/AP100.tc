@@ -1,0 +1,43 @@
+⍝ AP100.tc
+⍝ ----------------------------------
+
+      ⍝ share variable OS with AP100 and allow ⎕SVO to complete
+      100 ⎕SVO 'OS' ◊ 0⍴⎕DL 0.2
+1
+
+      ⍝ make sure that OS is coupled
+      ⎕SVO 'OS'
+2
+
+      ⍝ after coupling, dyadic ⎕SVO should be the same as monadic
+      100 ⎕SVO 'OS'
+2
+
+      ⍝ status right after coupling (seems not to change)
+      ⎕SVS 'OS'
+0 0 1 1
+
+      ⍝ control right after coupling (seems not to change)
+      ⎕SVC 'OS'
+0 0 0 1
+
+      ⍝ issue command pwd
+      OS←'pwd'
+      OS
+0
+
+      ⍝ issue bad command bad___command
+      OS←'bad___command'
+      OS
+127
+
+      ⍝ retract variable OS with AP100
+      ⎕SVR 'OS'
+2
+
+      ⍝ check variable OS again (should be normal variable now)
+      ⎕SVO 'OS'
+0
+
+⍝ ==================================
+

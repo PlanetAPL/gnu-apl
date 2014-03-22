@@ -1,0 +1,169 @@
+
+The APL interpreter can be configured by means of ./configure options (see
+also file INSTALL in this directory). In addition to the standard options
+provided by ./configure (that are described in file INSTALL),
+the following GNU APL specific ./configure options are recognized:
+
+
+--without-readline
+    GNU APL uses libreadline for reading APL characters from the keyboard.
+    This only works when Unicode characters are supported by libreadline.
+    On most systems that is the case; on some systems, for example FreeBSD,
+    it is not. If Unicode is not supported, then you can either install a
+    different libreadline, or ./configure GNU APL with --without-readline.
+    Most likely you will then --disable-nls as well. Example:
+
+    ./configure --without-readline --disable-nls
+
+
+--disable-nls
+    Sometimes internationalization and localization support causes problems
+    with APL characters when the locale settings are wrong or locale support
+    in general is broken, and it can be cumbersome to fix such problems.
+
+    Given the very few languages supported by GNU APL (English and German),
+    it is much easier to disable native language support completely with
+    --disable-nls. Example:
+
+    ./configure --disable-nls
+
+
+ASSERT_LEVEL_WANTED=n
+   There are numerous Assert() and Assert1 macros in the source code of the
+   APL interpreter. These macros check more (Assert1) or less (Assert)
+   obvious assumptions that throw exceptions if they turn out to be wrong.
+   Like for dynamic logging, these macros have negative performance impacts
+   and they can be disabled.
+
+   By default, ASSERT_LEVEL_WANTED=1 and that disables the Assert1() macro
+   and enables the Assert() macro
+
+   ASSERT_LEVEL_WANTED=2 enables both macros.
+
+   ASSERT_LEVEL_WANTED=0 disables both macros; this gives the maximum
+   performance, but at the same time bears the risk that internal errors
+   of the APL interpreter are not detected. Example:
+
+    ./configure ASSERT_LEVEL_WANTED=2
+
+
+   CIN_COLOR_WANTED
+  CERR_COLOR_WANTED
+  COUT_COLOR_WANTED
+RESET_COLORS_WANTED
+   CLEAR_EOL_WANTED
+   These options were used in GNU APL 1.0 to configure output coloring.
+   Output coloring can now specified in GNU APL's preference file. This
+   is more flexible than configuring the colors at compile time.
+
+
+DYNAMIC_LOG_WANTED=yes
+    The APL interpreter has more than 30 log categories. Each log category can
+    be turned on or off in order to troubleshoot the APL interpreter. There are
+    two ways to control the logging categories: statically or dynamically.
+
+    Statically means that it is decided at compile time if a log category
+    shall be on or off. Dynamically means that a log category can be turned
+    on and off at run-time (with the command ]LOG).
+
+    Dynamic logging has a performance penalty since every potential log
+    printout has an if () statement that checks if the log category is turned
+    on or off. With static logging this if () statement has a constant value
+    that will be optimized away by the C++ compiler. Dynamic logging also
+    slightly increases the size of the APL interpreter.
+
+   In both cases (static or dynamic logging), the file src/Logging.def defines
+   the logging categories at start-up of the APL interpreter. If the first 
+   argument of the log_def() macro is 0 then the log category is initially
+   disabled (and remains disabled if static logging is used); if it is 1 
+   then the log category is initially enabled. Example:
+
+    ./configure DYNAMIC_LOG_WANTED=yes
+
+
+MAX_RANK_WANTED=n
+    Set the maximum rank of APL values to n. The default value is 8. Ranks
+    smaller than 4 should be avoided. There is no performance penalty for
+    increasing the max. rank, but every additional dimension takes 4-8 bytes
+    of memory for every APL value (even those with a smaller rank), Example:
+
+    ./configure MAX_RANK_WANTED=10
+
+
+PRINT_SEMA_WANTED=yes
+   If the APL interpreter starts new processes for shared variables (for
+   example AP100, AP210, or APnnn) then these processes use the same output
+   channels (cout and cerr) as the interpreter, and the garbled output can
+   be difficult to read. With PRINT_SEMA_WANTED=yes, a semaphore makes sure
+   that output lines from different sources are not mixed. The downside of
+   this is a slightly lower performance on output. Example:
+
+    ./configure PRINT_SEMA_WANTED=yes
+
+
+VALUE_CHECK_WANTED=yes
+    There is a function called check_value() that checks every new APL value
+    for completeness. This check helps finding faults in the interpreter, but
+    decreases the performance of the interpreter. Example:
+
+    ./configure VALUE_CHECK_WANTED=yes
+
+
+VALUE_HISTORY_WANTED=yes
+    There is a macro called ADD_EVENT that records the history of APL values.
+    This history helps finding faults in the interpreter, but
+    decreases the performance of the interpreter. Example:
+
+    ./configure VALUE_HISTORY_WANTED=yes
+
+
+VF_TRACING_WANTED=yes
+   You can enable tracing of changes to value flags. This creates a lot of
+   debug output and consequently has considerable performance impacts. Example:
+
+    ./configure VF_TRACING_WANTED=yes
+
+
+SHORT_VALUE_LENGTH_WANTED=12
+   The interpreter distinguishes long values and short APL values. Short values
+   are allocated with a single call to "new" that allocates the Shape of the
+   value and its ravel. Long values allocate the value header with one call to
+   "new" and then the ravel with another call to "new". Long values are
+   therefore a little slower than short values. By increasing
+   SHORT_VALUE_LENGTH_WANTED you get fewer new calls (and consequently better
+   performance) at the cost of more memory. Example:
+
+    ./configure SHORT_VALUE_LENGTH_WANTED=42
+
+
+GPROF_WANTED=yes
+   Setting GPROF_WANTED adds -pg flags to CXXFLAGS and LDFLAGS and that
+   enables support for gprof profiling of the apl interpreter. Example:
+
+    ./configure GPROF_WANTED=yes
+
+
+-------------------------------------------------------------------------------
+
+The typical setting for users not interested in troubleshooting the APL
+interpreter is to not use any options, i.e:
+
+    ./configure
+
+
+The typical setting for software development of the APL interpreter is:
+
+    ./configure VALUE_CHECK_WANTED=yes \
+                VALUE_HISTORY_WANTED=yes \
+                DYNAMIC_LOG_WANTED=yes \
+                ASSERT_LEVEL_WANTED=2  \
+                PRINT_SEMA_WANTED=yes
+
+After the first ./configure run (which creates the top level Makefile)
+you can do:
+
+    make develop
+
+which runs ./configure with the typical development options above.
+
+

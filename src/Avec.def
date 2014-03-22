@@ -1,0 +1,335 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/** The Unicode characters used in the interpreter.
+    Characters defined with char_def( , xxx) are contained in ⎕AV
+    Characters defined with char_def( , 0xx) are in ⎕AV without APL relevance
+    Characters defined with char_df1() are known in the source code but are 
+    not contained in ⎕AV.
+**/
+
+//       Name                 Unicode  Token          Flags     Pos
+//-------------------------------------------------------------------
+char_def(ASCII_NUL          , 0x00   , END          , NONE     ,  00)
+char_def(ASCII_SOH          , 0x01   , END          , NONE     ,  01)
+char_def(ASCII_STX          , 0x02   , END          , NONE     ,  02)
+char_def(ASCII_ETX          , 0x03   , END          , NONE     ,  03)
+char_def(ASCII_EOT          , 0x04   , END          , NONE     ,  04)
+char_def(ASCII_ENQ          , 0x05   , END          , NONE     ,  05)
+char_def(ASCII_ACK          , 0x06   , END          , NONE     ,  06)
+char_def(ASCII_BEL          , 0x07   , END          , NONE     ,  07)
+char_def(ASCII_BS           , 0x08   , END          , NONE     ,  08)
+char_def(ASCII_HT           , 0x09   , SPACE        , NONE     ,  09)
+char_def(ASCII_LF           , 0x0A   , NEWLINE      , NONE     ,  0A)
+char_def(ASCII_VT           , 0x0B   , END          , NONE     ,  0B)
+char_def(ASCII_FF           , 0x0C   , END          , NONE     ,  0C)
+char_def(ASCII_CR           , 0x0D   , SPACE        , NONE     ,  0D)
+char_def(ASCII_SO           , 0x0E   , END          , NONE     ,  0E)
+char_def(ASCII_SI           , 0x0F   , END          , NONE     ,  0F)
+char_def(ASCII_DLE          , 0x10   , END          , NONE     ,  10)
+char_def(ASCII_DC1          , 0x11   , END          , NONE     ,  11)
+char_def(ASCII_DC2          , 0x12   , END          , NONE     ,  12)
+char_def(ASCII_DC3          , 0x13   , END          , NONE     ,  13)
+char_def(ASCII_DC4          , 0x14   , END          , NONE     ,  14)
+char_def(ASCII_NAK          , 0x15   , END          , NONE     ,  15)
+char_def(ASCII_SYN          , 0x16   , END          , NONE     ,  16)
+char_def(ASCII_ETB          , 0x17   , END          , NONE     ,  17)
+char_def(ASCII_CAN          , 0x18   , END          , NONE     ,  18)
+char_def(ASCII_EM           , 0x19   , END          , NONE     ,  19)
+char_def(ASCII_SUB          , 0x1A   , END          , NONE     ,  1A)
+char_def(ASCII_ESC          , 0x1B   , END          , NONE     ,  1B)
+char_def(ASCII_FS           , 0x1C   , END          , NONE     ,  1C)
+char_def(ASCII_GS           , 0x1D   , END          , NONE     ,  1D)
+char_def(ASCII_RS           , 0x1E   , END          , NONE     ,  1E)
+char_def(ASCII_US           , 0x1F   , END          , NONE     ,  1F)
+char_def(ASCII_SPACE        , ' '    , SPACE        , NO_SPACE ,  20)
+char_def(ASCII_EXCLAM       , '!'    , F12_BINOM    , NO_SPACE ,  21)
+char_def(ASCII_DOUBLE_QUOTE , '"'    , QUOTE2       , NONE     ,  22)
+char_def(ASCII_NUMBER_SIGN  , '#'    , END          , NONE     ,  23)
+char_def(ASCII_DOLLAR_SIGN  , '$'    , END          , NONE     ,  24)
+char_def(ASCII_PERCENT      , '%'    , END          , NONE     ,  25)
+char_def(ASCII_AMPERSAND    , '&'    , END          , NONE     ,  26)
+char_def(SINGLE_QUOTE       , '\''   , QUOTE1       , NONE     ,  27)
+char_def(ASCII_L_PARENT     , '('    , L_PARENT     , NO_SPACE ,  28)
+char_def(ASCII_R_PARENT     , ')'    , R_PARENT     , NO_SPACE ,  29)
+char_def(ASCII_ASTERISK     , '*'    , F12_POWER    , NO_SPACE ,  2A)
+char_def(ASCII_PLUS         , '+'    , F12_PLUS     , NO_SPACE ,  2B)
+char_def(ASCII_COMMA        , ','    , F12_COMMA    , NO_SPACE ,  2C)
+char_def(ASCII_MINUS        , '-'    , F12_MINUS    , NO_SPACE ,  2D)
+char_def(ASCII_FULLSTOP     , '.'    , OPER2_PRODUCT, NO_SPACE ,  2E)
+char_def(ASCII_SLASH        , '/'    , OPER1_REDUCE , NO_SPACE ,  2F)
+char_def(ASCII_0            , '0'    , NUMERIC      , NUMERIC  ,  30)
+char_def(ASCII_1            , '1'    , NUMERIC      , NUMERIC  ,  31)
+char_def(ASCII_2            , '2'    , NUMERIC      , NUMERIC  ,  32)
+char_def(ASCII_3            , '3'    , NUMERIC      , NUMERIC  ,  33)
+char_def(ASCII_4            , '4'    , NUMERIC      , NUMERIC  ,  34)
+char_def(ASCII_5            , '5'    , NUMERIC      , NUMERIC  ,  35)
+char_def(ASCII_6            , '6'    , NUMERIC      , NUMERIC  ,  36)
+char_def(ASCII_7            , '7'    , NUMERIC      , NUMERIC  ,  37)
+char_def(ASCII_8            , '8'    , NUMERIC      , NUMERIC  ,  38)
+char_def(ASCII_9            , '9'    , NUMERIC      , NUMERIC  ,  39)
+char_def(ASCII_COLON        , ':'    , COLON        , NO_SPACE ,  3A)
+char_def(ASCII_SEMICOLON    , ';'    , SEMICOL      , NO_SPACE ,  3B)
+char_def(ASCII_LESS         , '<'    , F2_LESS      , NO_SPACE ,  3C)
+char_def(ASCII_EQUAL        , '='    , F2_EQUAL     , NO_SPACE ,  3D)
+char_def(ASCII_GREATER      , '>'    , F2_GREATER   , NO_SPACE ,  3E)
+char_def(ASCII_QUESTION     , '?'    , F12_ROLL     , NO_SPACE ,  3F)
+char_def(ASCII_AT_SIGN      , '@'    , END          , NO_SPACE ,  40)
+char_def(ASCII_A            , 'A'    , SYMBOL       , SYMBOL   ,  41)
+char_def(ASCII_B            , 'B'    , SYMBOL       , SYMBOL   ,  42)
+char_def(ASCII_C            , 'C'    , SYMBOL       , SYMBOL   ,  43)
+char_def(ASCII_D            , 'D'    , SYMBOL       , SYMBOL   ,  44)
+char_def(ASCII_E            , 'E'    , SYMBOL       , SYMBOL   ,  45)
+char_def(ASCII_F            , 'F'    , SYMBOL       , SYMBOL   ,  46)
+char_def(ASCII_G            , 'G'    , SYMBOL       , SYMBOL   ,  47)
+char_def(ASCII_H            , 'H'    , SYMBOL       , SYMBOL   ,  48)
+char_def(ASCII_I            , 'I'    , SYMBOL       , SYMBOL   ,  49)
+char_def(ASCII_J            , 'J'    , SYMBOL       , SYMBOL   ,  4A)
+char_def(ASCII_K            , 'K'    , SYMBOL       , SYMBOL   ,  4B)
+char_def(ASCII_L            , 'L'    , SYMBOL       , SYMBOL   ,  4C)
+char_def(ASCII_M            , 'M'    , SYMBOL       , SYMBOL   ,  4D)
+char_def(ASCII_N            , 'N'    , SYMBOL       , SYMBOL   ,  4E)
+char_def(ASCII_O            , 'O'    , SYMBOL       , SYMBOL   ,  4F)
+char_def(ASCII_P            , 'P'    , SYMBOL       , SYMBOL   ,  50)
+char_def(ASCII_Q            , 'Q'    , SYMBOL       , SYMBOL   ,  51)
+char_def(ASCII_R            , 'R'    , SYMBOL       , SYMBOL   ,  52)
+char_def(ASCII_S            , 'S'    , SYMBOL       , SYMBOL   ,  53)
+char_def(ASCII_T            , 'T'    , SYMBOL       , SYMBOL   ,  54)
+char_def(ASCII_U            , 'U'    , SYMBOL       , SYMBOL   ,  55)
+char_def(ASCII_V            , 'V'    , SYMBOL       , SYMBOL   ,  56)
+char_def(ASCII_W            , 'W'    , SYMBOL       , SYMBOL   ,  57)
+char_def(ASCII_X            , 'X'    , SYMBOL       , SYMBOL   ,  58)
+char_def(ASCII_Y            , 'Y'    , SYMBOL       , SYMBOL   ,  59)
+char_def(ASCII_Z            , 'Z'    , SYMBOL       , SYMBOL   ,  5A)
+char_def(ASCII_L_BRACK      , '['    , L_BRACK      , NO_SPACE ,  5B)
+char_def(ASCII_BACKSLASH    , '\\'   , OPER1_SCAN   , NO_SPACE ,  5C)
+char_def(ASCII_R_BRACK      , ']'    , R_BRACK      , NO_SPACE ,  5D)
+char_def(ASCII_CIRCUMFLEX   , '^'    , F2_AND       , NO_SPACE ,  5E)
+char_def(ASCII_UNDERSCORE   , '_'    , SYMBOL       , SYMBOL   ,  5F)
+char_def(ACCENT_GRAVE       , '`'    , END          , NO_SPACE ,  60)
+char_def(ASCII_a            , 'a'    , SYMBOL       , SYMBOL   ,  61)
+char_def(ASCII_b            , 'b'    , SYMBOL       , SYMBOL   ,  62)
+char_def(ASCII_c            , 'c'    , SYMBOL       , SYMBOL   ,  63)
+char_def(ASCII_d            , 'd'    , SYMBOL       , SYMBOL   ,  64)
+char_def(ASCII_e            , 'e'    , SYMBOL       , SYMBOL   ,  65)
+char_def(ASCII_f            , 'f'    , SYMBOL       , SYMBOL   ,  66)
+char_def(ASCII_g            , 'g'    , SYMBOL       , SYMBOL   ,  67)
+char_def(ASCII_h            , 'h'    , SYMBOL       , SYMBOL   ,  68)
+char_def(ASCII_i            , 'i'    , SYMBOL       , SYMBOL   ,  69)
+char_def(ASCII_j            , 'j'    , SYMBOL       , SYMBOL   ,  6A)
+char_def(ASCII_k            , 'k'    , SYMBOL       , SYMBOL   ,  6B)
+char_def(ASCII_l            , 'l'    , SYMBOL       , SYMBOL   ,  6C)
+char_def(ASCII_m            , 'm'    , SYMBOL       , SYMBOL   ,  6D)
+char_def(ASCII_n            , 'n'    , SYMBOL       , SYMBOL   ,  6E)
+char_def(ASCII_o            , 'o'    , SYMBOL       , SYMBOL   ,  6F)
+char_def(ASCII_p            , 'p'    , SYMBOL       , SYMBOL   ,  70)
+char_def(ASCII_q            , 'q'    , SYMBOL       , SYMBOL   ,  71)
+char_def(ASCII_r            , 'r'    , SYMBOL       , SYMBOL   ,  72)
+char_def(ASCII_s            , 's'    , SYMBOL       , SYMBOL   ,  73)
+char_def(ASCII_t            , 't'    , SYMBOL       , SYMBOL   ,  74)
+char_def(ASCII_u            , 'u'    , SYMBOL       , SYMBOL   ,  75)
+char_def(ASCII_v            , 'v'    , SYMBOL       , SYMBOL   ,  76)
+char_def(ASCII_w            , 'w'    , SYMBOL       , SYMBOL   ,  77)
+char_def(ASCII_x            , 'x'    , SYMBOL       , SYMBOL   ,  78)
+char_def(ASCII_y            , 'y'    , SYMBOL       , SYMBOL   ,  79)
+char_def(ASCII_z            , 'z'    , SYMBOL       , SYMBOL   ,  7A)
+char_def(ASCII_LEFT_CURLY   , '{'    , END          , NO_SPACE ,  7B)
+char_def(ASCII_BAR          , '|'    , F12_STILE    , NO_SPACE ,  7C)
+char_def(ASCII_RIGHT_CURLY  , '}'    , END          , NO_SPACE ,  7D)
+char_def(ASCII_TILDE        , '~'    , F12_WITHOUT  , NO_SPACE ,  7E)
+char_def(ASCII_DELETE       , 0x7F   , END          , NO_SPACE , 07F)
+char_def(NO_BREAK_SPACE     , 0x00A0 , END          , NO_SPACE ,  FF) /*   */
+char_def(INVERTED_EXCLAM    , 0x00A1 , END          , NO_SPACE ,  8D) /* ¡ */
+char_def(POUND              , 0x00A3 , END          , NO_SPACE ,  9C) /* £ */
+char_def(YEN                , 0x00A5 , END          , NO_SPACE , 080) /* ¥ */
+char_def(DIAERESIS          , 0x00A8 , OPER1_EACH   , NO_SPACE ,  FE) /* ¨ */
+char_def(OVERBAR            , 0x00AF , NUMERIC      , NO_SPACE ,  FD) /* ¯ */
+char_df1(PAD_U2             , 0x00B2 , END          , NO_SPACE ,  --) /* ² */
+char_df1(PAD_U3             , 0x00B3 , END          , NO_SPACE ,  --) /* ³ */
+char_df1(PAD_U1             , 0x00B9 , END          , NO_SPACE ,  --) /* ¹ */
+char_df1(INVERTED_QUESTION  , 0x00BF , END          , NO_SPACE ,  A8) /* ¿ */
+char_def(MULTIPLY           , 0x00D7 , F12_TIMES    , NO_SPACE ,  F5) /* × */
+char_def(DIVIDE             , 0x00F7 , F12_DIVIDE   , NO_SPACE ,  F6) /* ÷ */
+char_df1(mue                , 0x03BC , END          , NO_SPACE ,  --) /* μ */
+char_df1(AV_MAX             , 0x0461 , END          , NO_SPACE ,  --) /* ѡ */
+char_df1(PAD_U0             , 0x2070 , END          , NO_SPACE ,  --) /* ⁰ */
+char_df1(PAD_U4             , 0x2074 , END          , NO_SPACE ,  --) /* ⁴ */
+char_df1(PAD_U5             , 0x2075 , END          , NO_SPACE ,  --) /* ⁵ */
+char_df1(PAD_U6             , 0x2076 , END          , NO_SPACE ,  --) /* ⁶ */
+char_df1(PAD_U7             , 0x2077 , END          , NO_SPACE ,  --) /* ⁷ */
+char_df1(PAD_U8             , 0x2078 , END          , NO_SPACE ,  --) /* ⁸ */
+char_df1(PAD_U9             , 0x2079 , END          , NO_SPACE ,  --) /* ⁹ */
+char_df1(PAD_Un             , 0x207F , END          , NO_SPACE ,  --) /* ⁿ */
+char_df1(PAD_L0             , 0x2080 , END          , NO_SPACE ,  --) /* ₀ */
+char_df1(PAD_L1             , 0x2081 , END          , NO_SPACE ,  --) /* ₁ */
+char_df1(PAD_L2             , 0x2082 , END          , NO_SPACE ,  --) /* ₂ */
+char_df1(PAD_L3             , 0x2083 , END          , NO_SPACE ,  --) /* ₃ */
+char_df1(PAD_L4             , 0x2084 , END          , NO_SPACE ,  --) /* ₄ */
+char_df1(PAD_L5             , 0x2085 , END          , NO_SPACE ,  --) /* ₅ */
+char_df1(PAD_L6             , 0x2086 , END          , NO_SPACE ,  --) /* ₆ */
+char_df1(PAD_L7             , 0x2087 , END          , NO_SPACE ,  --) /* ₇ */
+char_df1(PAD_L8             , 0x2088 , END          , NO_SPACE ,  --) /* ₈ */
+char_df1(PAD_L9             , 0x2089 , END          , NO_SPACE ,  --) /* ₉ */
+char_def(EURO               , 0x20AC , END          , NO_SPACE , 081) /* € */
+char_def(LEFT_ARROW         , 0x2190 , ASSIGN       , NO_SPACE ,  BD) /* ← */
+char_def(UP_ARROW           , 0x2191 , F12_TAKE     , NO_SPACE ,  C6) /* ↑ */
+char_def(RIGHT_ARROW        , 0x2192 , R_ARROW      , NO_SPACE ,  B8) /* → */
+char_def(DOWN_ARROW         , 0x2193 , F12_DROP     , NO_SPACE ,  C7) /* ↓ */
+char_def(RIGHT_LEFT_ARROW   , 0x21C4 , END          , NO_SPACE , 082) /* ⇄ */
+char_df1(DOUBLE_ARROW_L     , 0x21E8 , END          , NO_SPACE ,  --) /* ⇨ */
+char_def(DELTA              , 0x2206 , SYMBOL       , SYMBOL   ,  B6) /* ∆ */
+char_def(NABLA              , 0x2207 , END          , NO_SPACE ,  B7) /* ∇ */
+char_def(ELEMENT            , 0x2208 , F12_ELEMENT  , NO_SPACE ,  EE) /* ∈ */
+char_df1(ELEMENT1           , 0x220A , END          , NO_SPACE ,  --) /* ∊ */
+char_def(RING_OPERATOR      , 0x2218 , JOT          , NO_SPACE ,  F8) /* ∘ */
+char_df1(INFINITY           , 0x221E , END          , NO_SPACE ,  --) /* ∞ */
+char_def(DIVIDES            , 0x2223 , F12_STILE    , NO_SPACE ,  B2) /* ∣ */
+char_def(AND                , 0x2227 , F2_AND       , NO_SPACE ,  83) /* ∧ */
+char_def(OR                 , 0x2228 , F2_OR        , NO_SPACE ,  EB) /* ∨ */
+char_def(INTERSECTION       , 0x2229 , END          , NO_SPACE ,  EF) /* ∩ */
+char_def(UNION              , 0x222A , F1_UNIQUE    , NO_SPACE ,  AC) /* ∪ */
+char_def(DOTTED_DEL         , 0x2235 , END          , NO_SPACE ,  D2) /* ∵ */
+char_def(TILDE_OPERATOR     , 0x223C , F12_WITHOUT  , NO_SPACE ,  84) /* ∼ */
+char_def(NOT_EQUAL          , 0x2260 , F2_UNEQ      , NO_SPACE ,  F4) /* ≠ */
+char_def(EQUIVALENT         , 0x2261 , F12_EQUIV    , NO_SPACE ,  CF) /* ≡ */
+char_def(LESS_OR_EQUAL      , 0x2264 , F2_LEQ       , NO_SPACE ,  F3) /* ≤ */
+char_def(MORE_OR_EQUAL      , 0x2265 , F2_MEQ       , NO_SPACE ,  F2) /* ≥ */
+char_def(BETWEEN            , 0x226C , END          , NO_SPACE , 085) /* ≬ */
+char_def(SUBSET             , 0x2282 , F12_PARTITION, NO_SPACE ,  E2) /* ⊂ */
+char_def(SUPERSET           , 0x2283 , F12_PICK     , NO_SPACE ,  E3) /* ⊃ */
+char_def(CIRCLE_BAR         , 0x2296 , F12_ROTATE1  , NO_SPACE ,  E9) /* ⊖ */
+char_def(RIGHT_TACK         , 0x22A2 , F2_RIGHT     , NO_SPACE ,  D6) /* ⊢ */
+char_def(LEFT_TACK          , 0x22A3 , F2_LEFT      , NO_SPACE ,  D7) /* ⊣ */
+char_def(DOWN_TACK          , 0x22A4 , F12_ENCODE   , NO_SPACE ,  98) /* ⊤ */
+char_def(UP_TACK            , 0x22A5 , F12_DECODE   , NO_SPACE ,  9D) /* ⊥ */
+char_def(STAR_OPERATOR      , 0x22C6 , F12_POWER    , NO_SPACE ,  86) /* ⋆ */
+char_def(EPSILON_UBAR       , 0x22F8 , F2_FIND      , NO_SPACE ,  87) /* ⋸ */
+char_def(LEFT_CEILING       , 0x2308 , F12_RND_UP   , NO_SPACE ,  A9) /* ⌈ */
+char_def(LEFT_FLOOR         , 0x230A , F12_RND_DN   , NO_SPACE ,  BE) /* ⌊ */
+char_def(I_BEAM             , 0x2336 , END          , NO_SPACE ,  9F) /* ⌶ */
+char_def(SQUISH_QUAD        , 0x2337 , F2_INDEX     , NO_SPACE ,  D3) /* ⌷ */
+char_def(QUAD_EQUAL         , 0x2338 , END          , NO_SPACE , 088) /* ⌸ */
+char_def(QUAD_DIVIDE        , 0x2339 , F12_DOMINO   , NO_SPACE ,  92) /* ⌹ */
+char_def(QUAD_DIAMOND       , 0x233A , END          , NO_SPACE , 089) /* ⌺ */
+char_def(QUAD_JOT           , 0x233B , END          , NO_SPACE ,  D5) /* ⌻ */
+char_def(QUAD_CIRCLE        , 0x233C , END          , NO_SPACE , 08A) /* ⌼ */
+char_def(CIRCLE_STILE       , 0x233D , F12_ROTATE   , NO_SPACE ,  E8) /* ⌽ */
+char_def(CIRCLE_JOT         , 0x233E , END          , NO_SPACE , 08B) /* ⌾ */
+char_def(SLASH_BAR          , 0x233F , OPER1_REDUCE1, NO_SPACE ,  F0) /* ⌿ */
+char_def(BACKSLASH_BAR      , 0x2340 , OPER1_SCAN1  , NO_SPACE ,  F1) /* ⍀ */
+char_def(QUAD_SLASH         , 0x2341 , END          , NO_SPACE , 08C) /* ⍁ */
+char_def(QUAD_BACKSLASH     , 0x2342 , END          , NO_SPACE ,  D4) /* ⍂ */
+char_df1(QUAD_LESS_THAN     , 0x2343 , END          , NO_SPACE ,  --) /* ⍃ */
+char_def(QUAD_GREATER_THAN  , 0x2344 , END          , NO_SPACE , 08E) /* ⍄ */
+char_def(LEFT_VANE          , 0x2345 , END          , NO_SPACE , 08F) /* ⍅ */
+char_def(RIGHT_VANE         , 0x2346 , END          , NO_SPACE , 093) /* ⍆ */
+char_def(QUAD_LEFT_ARROW    , 0x2347 , END          , NO_SPACE , 095) /* ⍇ */
+char_def(QUAD_RIGHT_ARROW   , 0x2348 , END          , NO_SPACE , 096) /* ⍈ */
+char_def(TRANSPOSE          , 0x2349 , F12_TRANSPOSE, NO_SPACE ,  ED) /* ⍉ */
+char_def(DTACK_UNDERBAR     , 0x234A , END          , NO_SPACE , 097) /* ⍊ */
+char_def(SORT_ASCENDING     , 0x234B , F12_SORT_ASC , NO_SPACE ,  FB) /* ⍋ */
+char_def(QUAD_DOWN_CARET    , 0x234C , END          , NO_SPACE , 099) /* ⍌ */
+char_def(QUAD_DELTA         , 0x234D , END          , NO_SPACE , 09A) /* ⍍ */
+char_def(EXECUTE            , 0x234E , F1_EXECUTE   , NO_SPACE ,  AF) /* ⍎ */
+char_def(UP_VANE            , 0x234F , END          , NO_SPACE , 09B) /* ⍏ */
+char_def(QUAD_UP_ARROW      , 0x2350 , END          , NO_SPACE , 0A0) /* ⍐ */
+char_def(UP_TACK_OVERBAR    , 0x2351 , END          , NO_SPACE , 0A1) /* ⍑ */
+char_def(SORT_DECENDING     , 0x2352 , F12_SORT_DES , NO_SPACE ,  FC) /* ⍒ */
+char_def(QUAD_UP_CARET      , 0x2353 , END          , NO_SPACE , 0A2) /* ⍓ */
+char_def(QUAD_DEL           , 0x2354 , END          , NO_SPACE , 0A3) /* ⍔ */
+char_def(FORMAT             , 0x2355 , F12_FORMAT   , NO_SPACE ,  AE) /* ⍕ */
+char_def(DOWN_VANE          , 0x2356 , END          , NO_SPACE , 0A4) /* ⍖ */
+char_def(QUAD_DOWN_ARROW    , 0x2357 , END          , NO_SPACE , 0A5) /* ⍗ */
+char_def(QUOTE_UNDERBAR     , 0x2358 , END          , NO_SPACE , 0A6) /* ⍘ */
+char_def(DELTA_UNDERBAR     , 0x2359 , SYMBOL       , SYMBOL   ,  F7) /* ⍙ */
+char_def(DIAMOND_UNDERBAR   , 0x235A , END          , NO_SPACE , 0A7) /* ⍚ */
+char_def(JOT_UNDERBAR       , 0x235B , END          , NO_SPACE , 0A8) /* ⍛ */
+char_def(CIRCLE_UNDERBAR    , 0x235C , END          , NO_SPACE , 0AA) /* ⍜ */
+char_def(COMMENT            , 0x235D , END          , NO_SPACE ,  E4) /* ⍝ */
+char_def(QUOTE_QUAD         , 0x235E , QUAD_QUOTE   , NO_SPACE ,  91) /* ⍞ */
+char_def(LOGARITHM          , 0x235F , F12_LOGA     , NO_SPACE ,  B5) /* ⍟ */
+char_df1(QUAD_COLON         , 0x2360 , END          , NO_SPACE ,  --) /* ⍠ */
+char_df1(UTACK_DIAERESIS    , 0x2361 , END          , NO_SPACE ,  --) /* ⍡ */
+char_def(DEL_DIAERESIS      , 0x2362 , END          , NO_SPACE , 0AB) /* ⍢ */
+char_df1(STAR_DIAERESIS     , 0x2363 , END          , NO_SPACE ,  --) /* ⍣ */
+char_def(JOT_DIARESIS       , 0x2364 , OPER1_RANK   , NO_SPACE ,  94) /* ⍤ */
+char_df1(CIRCLE_DIARESIS    , 0x2365 , END          , NO_SPACE ,  --) /* ⍥ */
+char_df1(DOWN_SHOE_STILE    , 0x2366 , END          , NO_SPACE ,  --) /* ⍦ */
+char_df1(LEFT_SHOE_STILE    , 0x2367 , END          , NO_SPACE ,  --) /* ⍧ */
+char_def(TILDE_DIAERESIS    , 0x2368 , OPER1_COMMUTE, NO_SPACE ,  AD) /* ⍨ */
+char_df1(GT_THAN_DIAERESIS  , 0x2369 , END          , NO_SPACE ,  --) /* ⍩ */
+char_def(COMMA_BAR          , 0x236A , F12_COMMA1   , NO_SPACE ,  B1) /* ⍪ */
+char_def(DEL_TILDE          , 0x236B , END          , NO_SPACE ,  FA) /* ⍫ */
+char_def(ZILDE              , 0x236C , F0_ZILDE     , NO_SPACE ,  B0) /* ⍬ */
+char_df1(STILE_TILDE        , 0x236D , END          , NO_SPACE ,  --) /* ⍭ */
+char_df1(SEMICOL_UNDERBAR   , 0x236E , END          , NO_SPACE ,  --) /* ⍮ */
+char_df1(QUAD_NOT_EQUAL     , 0x236F , END          , NO_SPACE ,  --) /* ⍯ */
+char_df1(QUAD_QUEST_MARK    , 0x2370 , END          , NO_SPACE ,  --) /* ⍰ */
+char_def(NOR                , 0x2371 , F2_NOR       , NO_SPACE ,  E7) /* ⍱ */
+char_def(NAND               , 0x2372 , F2_NAND      , NO_SPACE ,  E5) /* ⍲ */
+char_def(IOTA               , 0x2373 , F12_INDEX_OF , NO_SPACE ,  EC) /* ⍳ */
+char_def(RHO                , 0x2374 , F12_RHO      , NO_SPACE ,  E6) /* ⍴ */
+char_def(OMEGA              , 0x2375 , END          , NO_SPACE ,  F9) /* ⍵ */
+char_def(ALPHA_UNDERBAR     , 0x2376 , END          , NO_SPACE ,  9E) /* ⍶ */
+char_def(EPSILON_UNDERBAR   , 0x2377 , F2_FIND      , NO_SPACE ,  D1) /* ⍷ */
+char_def(INDEX_UNDERBAR     , 0x2378 , END          , NO_SPACE ,  D0) /* ⍸ */
+char_def(OMEGA_UNDERBAR     , 0x2379 , END          , NO_SPACE ,  E1) /* ⍹ */
+char_def(ALPHA              , 0x237A , END          , NO_SPACE ,  E0) /* ⍺ */
+char_def(QUAD_QUAD          , 0x2395 , QUAD_QUAD    , NONE     ,  90) /* ⎕ */
+char_def(LINE_HORI          , 0x2500 , END          , NO_SPACE ,  C4) /* ─ */
+char_df1(LINE_HORI2         , 0x2501 , END          , NO_SPACE ,  --) /* ━ */
+char_def(LINE_VERT          , 0x2502 , END          , NO_SPACE ,  B3) /* │ */
+char_df1(LINE_VERT2         , 0x2503 , END          , NO_SPACE ,  --) /* ┃ */
+char_def(LINE_DOWN_RIGHT    , 0x250C , END          , NO_SPACE ,  DA) /* ┌ */
+char_df1(LINE_DOWN2_RIGHT2  , 0x250F , END          , NO_SPACE ,  --) /* ┏ */
+char_def(LINE_DOWN_LEFT     , 0x2510 , END          , NO_SPACE ,  BF) /* ┐ */
+char_df1(LINE_DOWN2_LEFT2   , 0x2513 , END          , NO_SPACE ,  --) /* ┓ */
+char_def(LINE_UP_RIGHT      , 0x2514 , END          , NO_SPACE ,  C0) /* └ */
+char_df1(LINE_UP2_RIGHT2    , 0x2517 , END          , NO_SPACE ,  --) /* ┗ */
+char_def(LINE_UP_LEFT       , 0x2518 , END          , NO_SPACE ,  D9) /* ┘ */
+char_df1(LINE_UP2_LEFT2     , 0x251B , END          , NO_SPACE ,  --) /* ┛ */
+char_def(LINE_VERT_RIGHT    , 0x251C , END          , NO_SPACE ,  C3) /* ├ */
+char_def(LINE_VERT_LEFT     , 0x2524 , END          , NO_SPACE ,  B4) /* ┤ */
+char_def(LINE_DOWN_HORI     , 0x252C , END          , NO_SPACE ,  C2) /* ┬ */
+char_def(LINE_UP_HORI       , 0x2534 , END          , NO_SPACE ,  C1) /* ┴ */
+char_def(LINE_VERT_HORI     , 0x253C , END          , NO_SPACE ,  C5) /* ┼ */
+char_def(LINE2_HORI         , 0x2550 , END          , NO_SPACE ,  CD) /* ═ */
+char_def(LINE2_VERT         , 0x2551 , END          , NO_SPACE ,  BA) /* ║ */
+char_def(LINE2_DOWN_RIGHT   , 0x2554 , END          , NO_SPACE ,  C8) /* ╔ */
+char_def(LINE2_DOWN_LEFT    , 0x2557 , END          , NO_SPACE ,  BB) /* ╗ */
+char_def(LINE2_UP_RIGHT     , 0x255A , END          , NO_SPACE ,  C9) /* ╚ */
+char_def(LINE2_UP_LEFT      , 0x255D , END          , NO_SPACE ,  BC) /* ╝ */
+char_def(LINE2_VERT_RIGHT   , 0x2560 , END          , NO_SPACE ,  CC) /* ╠ */
+char_def(LINE2_VERT_LEFT    , 0x2563 , END          , NO_SPACE ,  B9) /* ╣ */
+char_def(LINE2_HORI_DOWN    , 0x2566 , END          , NO_SPACE ,  CB) /* ╦ */
+char_def(LINE2_HORI_UP      , 0x2569 , END          , NO_SPACE ,  CA) /* ╩ */
+char_def(LINE2_VERT_HORI    , 0x256C , END          , NO_SPACE ,  CE) /* ╬ */
+char_def(UPPER_HALF_BLOCK   , 0x2580 , END          , NO_SPACE ,  DF) /* ▀ */
+char_def(LOWER_HALF_BLOCK   , 0x2584 , END          , NO_SPACE ,  DC) /* ▄ */
+char_def(FULL_BLOCK         , 0x2588 , END          , NO_SPACE ,  DB) /* █ */
+char_def(LEFT_HALF_BLOCK    , 0x258C , END          , NO_SPACE ,  DD) /* ▌ */
+char_df1(QUAD_QUAD1         , 0x25AF , END          , NO_SPACE ,  --) /* ▯ */
+char_def(RIGHT_HALF_BLOCK   , 0x2590 , END          , NO_SPACE ,  DE) /* ▐ */
+char_def(DIAMOND            , 0x25CA , DIAMOND      , NO_SPACE ,  D8) /* ◊ */
+char_def(CIRCLE             , 0x25CB , F12_CIRCLE   , NO_SPACE ,  EA) /* ○ */
+
+#undef char_def
+#undef char_df1
+

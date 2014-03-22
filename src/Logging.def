@@ -1,0 +1,61 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+log_def(0, SHOW_AV                     , "AV details                          ")
+log_def(0, delete                      , "new and delete calls                ")
+log_def(0, get_line                    , "input from user or testcase file    ")
+log_def(0, parse                       , "parser: parsing                     ")
+log_def(0, find_closing                , " ...    function find_closing()     ")
+log_def(0, tokenize                    , " ...    tokenization                ")
+log_def(0, collect_constants           , " ...    function collect_constants()")
+log_def(0, create_value                , " ...    create value()              ")
+log_def(0, UserFunction__fix           , "defined function: fix()             ")
+log_def(0, UserFunction__set_line      , " ...              set_line()        ")
+log_def(0, UserFunction__load          , " ...              load()            ")
+log_def(0, UserFunction__execute       , " ...              execute()         ")
+log_def(0, UserFunction__enter_leave   , " ...              enter/leave       ")
+log_def(0, StateIndicator__enter_leave , "State indicator: enter/leave        ")
+log_def(0, StateIndicator__push_pop    , "  ...            push/pop           ")
+log_def(0, SYMBOL_lookup_symbol        , "Symbol: lookup                      ")
+log_def(0, SYMBOL_push_pop             , "  ...   push/pop and )ERASE         ")
+log_def(0, SYMBOL_resolve              , "  ...   resolve                     ")
+log_def(0, glue                        , "Value:  glue()                      ")
+log_def(0, Value__erase_stale          , "  ...  erase_stale()                ")
+log_def(0, Bif_F12_FORMAT              , "APL primitive function format       ")
+log_def(0, char_conversion             , "character conversions               ")
+log_def(0, quad_FX                     , "APL system function Quad-FX         ")
+log_def(0, command_IN                  , "commands )LOAD, )SAVE, )IN, and )OUT")
+log_def(0, verbose_error               , "more verbose errors                 ")
+log_def(0, error_throw                 , "details of error throwing           ")
+log_def(0, nabla                       , "nabla editor                        ")
+log_def(0, execute_goto                , "execute(): state changes            ")
+log_def(0, printbuf_align              , "PrintBuffer: align() function       ")
+log_def(0, cork                        , "Output: cork() functions            ")
+log_def(0, test_execution              , "Details of test execution           ")
+log_def(0, prefix_parser               , "Prefix parser                       ")
+log_def(0, prefix__location_info       , " ...   location information         ")
+log_def(0, FunOperX                    , "FunOper1 and FunOper2 functions     ")
+log_def(0, shared_variables            , "Shared Variable operations          ")
+log_def(0, argc_argv                   , "command line arguments (argc/argv)  ")
+log_def(0, startup                     , "interpreter start-up messages       ")
+
+#undef log_def
+

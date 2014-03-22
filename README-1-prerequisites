@@ -1,0 +1,35 @@
+
+Before you can build GNU APL, make sure that the following
+libraries/packages have been installed:
+
+(lib-)lapack    from http://www.netlib.org/lapack/
+(lib-)readline  from a GNU mirror (directory: bash, file: readline-?.?.tar.gz)
+gettext         from a GNU mirror (directory: gettext)
+
+gettext in only needed if you want an internationalized GNU APL. You
+can ./configure it away with --disable-nls.
+
+On some systems readline is installed, but without 16-bit characters (needed
+for Unicode support). You can try ./configure with --without-readline then.
+
+If you are using Ubuntu, then the following commands may do the trick:
+
+    apt-get install liblapack-dev
+    apt-get install libreadline5-dev
+    apt-get install gettext
+
+GNU APL MAY compile without liblapack; in this case the matrix divide and
+matrix inverse function (aka Domino or ⌹) will report DOMAIN ERROR when called.
+
+readline and/or gettext are used by many other packages, so they may already
+be installed on your GNU/Linux system.
+
+On Linux Mint 16 (and possibly some other GNU/Linux distributions) you may
+need to install package ncurses-dev in order to uses curses functions,
+for example:
+
+    apt-get install ncurses-dev
+
+On Linux Mint 14.1, GNU APL compiled out-of--the-box.
+
+

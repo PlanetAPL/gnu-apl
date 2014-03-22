@@ -1,0 +1,8 @@
+# List of source files which contain translatable strings.
+
+# Package source files
+src/Command.cc
+src/Error.cc
+src/main.cc
+
+

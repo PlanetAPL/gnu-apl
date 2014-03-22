@@ -1,0 +1,30 @@
+
+//   APL name in ⎕SYL                           enum member         value
+//-------------------------------------------   ------------------  ------------------
+syl2("SI depth limit          (0 = no limit)" , SI_DEPTH_LIMIT    , si_depth_limit      )
+syl2("number of values limit  (0 = no limit)" , VALUE_COUNT_LIMIT , value_count_limit   )
+syl2("total ravel bytes limit (0 = no limit)" , RAVEL_BYTES_LIMIT , ravel_count_limit * sizeof(Cell))
+syl2("current SI depth"                       , __CURSI           , Workspace::SI_entry_count())
+syl2("current number of values"               , __CURVC           , Value::value_count  )
+syl2("current total ravel bytes"              , __CURRC           , Value::total_ravel_count * sizeof(Cell))
+syl2("max. rank for APL values"               , __MAXRK           , MAX_RANK_WANTED     )
+syl1("min. ⎕PW"                               , MIN_QUAD_PW       , 30                  )
+syl1("max. ⎕PW"                               , MAX_QUAD_PW       , 1000                )
+syl1("min. ⎕PP"                               , MIN_QUAD_PP       , 1                   )
+syl1("max. ⎕PP"                               , MAX_QUAD_PP       , 16                  )
+syl2("log10(max. ⎕CT)"                        , __LMAXCT          , (int)(log10(MAX_QUAD_CT) - 0.2))
+syl1("max. input line length"                 , MAX_INPUT_LEN     , 2000                )
+syl1("max. symbol count"                      , MAX_SYMBOL_COUNT  , 65536               )
+syl1("max. shared variable name length"       , MAX_SVAR_NAMELEN  , 64                  )
+syl2("max. length of filenames (paths)"       , __FNMAX           , FILENAME_MAX        )
+syl1("max. number of shared variables"        , MAX_SVARS_OFFERED , 64                  )
+syl1("max. number of APs"                     , MAX_ACTIVE_PROCS  , 16                  )
+syl1("max. operators per statement"           , MAX_FUN_OPER      , 16                  )
+syl2("largest integer"                        , __LINT            , 0x7FFFFFFFFFFFFFFFLL)
+syl2("smallest integer"                       , __SINT            , 0x8000000000000000LL)
+syl1("largest numeric exponent"               , LARGEST_EXPO      , 308                 )
+
+#undef syl1
+#undef syl2
+
+

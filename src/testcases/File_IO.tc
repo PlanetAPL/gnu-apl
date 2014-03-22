@@ -1,0 +1,130 @@
+⍝ File_IO.tc
+⍝ ----------------------------------
+
+      ⍝ 1. Fix native  function FILE_IO 
+      ⍝
+      'lib_file_io.so' ⎕FX 'FILE_IO'
+FILE_IO
+
+      ⍝ fopen this file readonly
+      ⍝
+      Filename←'testcases/File_IO.tc'
+      ⎕←Handle←FILE_IO[3] Filename
+⁰
+
+      ⍝ get statistics
+      ⍝
+      ⎕←FILE_IO[18] Handle
+⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰ ⁰
+
+      ⍝ close this file
+      ⍝
+      ⎕←FILE_IO[4] Handle
+0
+
+      ⍝ close this file again (which is an error)
+      ⍝
+      FILE_IO[4] Handle
+DOMAIN ERROR
+      FILE_IO[4]Handle
+      ^         ^
+
+      →
+
+      ⍝ create new file
+      ⍝
+      Filename← 'FILE_IO.test'
+      ⎕←Handle←'w' FILE_IO[3] Filename
+⁰
+
+      ⍝ write 3 lines
+      ⍝
+      ⎕←(⎕UCS "Hello\n") FILE_IO[7] Handle
+6
+      ⎕←(⎕UCS "World\n") FILE_IO[7] Handle
+6
+      ⎕←(⎕UCS "Line 3...\n") FILE_IO[7] Handle
+10
+
+      ⍝ close the file
+      ⍝
+      FILE_IO[4] Handle
+0
+
+      ⍝ print the file
+      ⍝
+      )HOST cat FILE_IO.test
+Hello
+World
+Line 3...
+
+0 
+
+      ⍝ open file again for reading
+      ⍝
+      ⎕←Handle← FILE_IO[3] 'FILE_IO.test'
+⁰
+
+      ⍝ read one line (default max_len)
+      ⍝
+      Z←FILE_IO[8] Handle
+      ⎕UCS Z
+Hello
+
+      ⍝ read another line (max_len 200)
+      ⍝
+      Z←200 FILE_IO[8] Handle
+      ⎕UCS Z
+World
+
+      ⍴Z
+6
+
+      ⍝ end of file ? (no)
+      ⍝
+      FILE_IO[10] Handle
+0
+
+      ⍝ read more bytes
+      ⍝
+      Z←FILE_IO[6] Handle
+      ⍴Z
+10
+
+      ⍝ end of file ? (yes)
+      ⍝
+      FILE_IO[10] Handle
+1
+
+      ⍝ get statistics
+      ⍝
+      ⎕←FILE_IO[18] Handle
+⁰ ⁰ 33206 1 ⁰ ⁰ 0 22 ⁰ ⁰ ⁰ ⁰ ⁰
+
+      ⍝ close the file
+      ⍝
+      FILE_IO[4] Handle
+0
+
+      ⍝ delete the file
+      ⍝
+      FILE_IO[19] Filename
+0
+
+      ⍝ delete the file again (should fail)
+      ⍝
+      Error←FILE_IO[19] Filename
+      FILE_IO[2] Error
+No such file or directory
+
+      ⍝ printf
+      ⍝
+      )ERASE FORMAT
+      FORMAT←"⎕everything %d Pi %e String %s\n" 
+      FORMAT 42 (○1) 'Hello'  FILE_IO[22] 1
+44
+
+      )ERASE FORMAT
+
+⍝ ==================================
+

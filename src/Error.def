@@ -1,0 +1,85 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+err_def(NO_ERROR,               "No Error"                       , 0,      0 )
+
+err_def(USER_DEFINED_ERROR,     "User defined error"             , 0,      1 )
+err_def(ENTRY_ERROR,            "ENTRY ERROR"                    , 0, 0x0101 )
+err_def(IMPROPER_LIB_REFERENCE, "IMPROPER LIBRARY REFERENCE"     , 0, 0x0201 )
+err_def(INCORRECT_COMMAND,      "INCORRECT COMMAND"              , 0, 0x0301 )
+err_def(LIBRARY_IO_ERROR,       "LIBRARY I/O ERROR"              , 0, 0x0401 )
+err_def(LIBRARY_NOT_AVAILABLE,  "LIBRARY NOT AVAILABLE"          , 0, 0x0501 )
+err_def(WS_OPEN,                "WS NOT FOUND (open)"            , 0, 0x0601 )
+err_def(WS_FSTAT,               "WS NOT FOUND (fstat)"           , 0, 0x0701 )
+err_def(WS_MMAP,                "WS NOT FOUND (mmap)"            , 0, 0x0801 )
+err_def(NOT_YET_IMPLEMENTED,    "NOT YET IMPLEMENTED"            , 0, 0x0901 )
+err_def(THIS_IS_A_BUG,          "THIS IS A BUG !!!"              , 0, 0x0902 )
+err_def(ASSERTION_FAILED,       "Assertion failed"               , 0, 0x0A01 )
+err_def(DEFN_ERROR,             "DEFN ERROR"                     , 0, 0x0B01 )
+err_def(INTERNAL_ERROR,         "Internal Error"                 , 0, 0x0C01 )
+err_def(UNKNOWN_ERROR,          "Unknown Error"                  , 0, 0x0D01 )
+
+err_def(INTERRUPT,              "INTERRUPT"                      , 1,      1 )
+err_def(SYSTEM_ERROR,           "SYSTEM ERROR"                   , 1,      2 )
+err_def(WS_FULL,                "WS FULL"                        , 1,      3 )
+err_def(SYSTEM_LIMIT_SYMTAB,    "SYSTEM LIMIT (symbol table)"    , 1,      4 )
+err_def(SYSTEM_LIMIT_RANK,      "SYSTEM LIMIT (rank)"            , 1,      8 )
+err_def(SYSTEM_LIMIT_FILENAME,  "SYSTEM LIMIT (filename)"        , 1,     14 )
+err_def(SYSTEM_LIMIT_FUNOPER,   "SYSTEM LIMIT (fun_oper)"        , 1,     15 )
+err_def(SYSTEM_LIMIT_SIDEPTH,   "SYSTEM LIMIT (SI depth)"        , 1,    100 )
+err_def(SYSTEM_LIMIT_VALCOUNT,  "SYSTEM LIMIT (value count)"     , 1,    101 )
+err_def(SYSTEM_LIMIT_RAVELSIZE, "SYSTEM LIMIT (ravel size)"      , 1,    102 )
+err_def(ATTENTION,              "ATTENTION"                      , 1,     17 )
+
+err_def(SYNTAX_ERROR,           "SYNTAX ERROR"                   , 2,      2 )
+err_def(NO_TOKEN,               "No token"                       , 2, 0x0102 )
+err_def(BAD_UTF8_START,         "Bad UTF-8 starting character"   , 2, 0x0202 )
+err_def(BAD_UTF8_CONT,          "Bad UTF-8 cont. character"      , 2, 0x0302 )
+err_def(UNSUPPORTED_CHAR,       "Unsupported character"          , 2, 0x0402 )
+err_def(NON_APL_CHAR,           "Non-APL character"              , 2, 0x0502 )
+err_def(BAD_NUMBER,             "Bad number"                     , 2, 0x0602 )
+err_def(BAD_EXECUTE_CHAR,       "Bad char in execute"            , 2, 0x0702 )
+err_def(NO_STRING_END,          "No string end found"            , 2, 0x0802 )
+err_def(STRING_NOT_UNICODE,     "String not UNICODE"             , 2, 0x0902 )
+err_def(NO_OPENING_PARENT,      "No opening parenthesis"         , 2, 0x0A02 )
+err_def(NO_CLOSING_PARENT,      "No closing parenthesis"         , 2, 0x0B02 )
+err_def(NO_OPENING_BRACKET,     "No opening bracket"             , 2, 0x0C02 )
+err_def(NO_CLOSING_BRACKET,     "No closing bracket"             , 2, 0x0D02 )
+err_def(LEFT_SYNTAX_ERROR,      "SYNTAX ERROR"                   , 2,      4 )
+
+err_def(VALUE_ERROR,            "VALUE ERROR"                    , 3,      1 )
+
+err_def(QUAD_PP_ERROR,         "⎕PP ERROR"  , 4,      1 )
+err_def(QUAD_IO_ERROR,         "⎕IO ERROR"  , 4,      2 )
+err_def(QUAD_CT_ERROR,         "⎕CT ERROR"  , 4,      3 )
+err_def(QUAD_FC_ERROR,         "⎕FC ERROR"  , 4,      4 )
+err_def(QUAD_RL_ERROR,         "⎕RL ERROR"  , 4,      5 )
+err_def(QUAD_PR_ERROR,         "⎕PR ERROR"  , 4,      7 )
+
+err_def(VALENCE_ERROR,          "VALENCE ERROR"                  , 5,      1 )
+err_def(RANK_ERROR,             "RANK ERROR"                     , 5,      2 )
+err_def(LENGTH_ERROR,           "LENGTH ERROR"                   , 5,      3 )
+err_def(DOMAIN_ERROR,           "DOMAIN ERROR"                   , 5,      4 )
+err_def(INDEX_ERROR,            "INDEX ERROR"                    , 5,      5 )
+err_def(AXIS_ERROR,             "AXIS ERROR"                     , 5,      6 )
+
+#undef err_def
+

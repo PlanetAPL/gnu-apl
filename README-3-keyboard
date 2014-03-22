@@ -1,0 +1,265 @@
+
+In addition to ASCII characters found on most keyboards,
+APL needs additional "APL characters". In this file
+we explain how GNU APL works and how to enable APL characters on
+a number of different machines.
+
+
+1. How GNU APL works
+====================
+
+The GNU APL binary is a standard process that receives its input (normally,
+but not necessarily what you type on your keyboard) on a file descriptor
+called "standard input (stdin) and prints its output on two other file
+descriptors called standard output (stdout) for normal APL output, and
+standard error (stderr) for additional diagnostic output.
+
+This means that the GNU APL binary has no idea what a keyboard is, nor is
+it concerned with fonts and the like on output. All it sees is a byte
+stream on input and all it produces is a bytes stream out its output
+channels stdout and stderr.
+
+GNU APL expects that the bytes sequences on stdin, stdout, and stderr are
+"UTF8-encoded". UTF8-encoding is an extension of ASCII encoding that is used
+in many places, including most Web pages. It is defined in the international
+standard STD 63 (aka. "RFC 3629 - UTF-8, a transformation format of ISO 10646")
+and is supported on most operating systems.
+
+A second standard - Unicode - describes how characters look like. This includes
+all APL characters used by GNU APL. Normally Unicode characters are UTF8 encoded
+when transmitted over serial lines, files descriptors, in IP packets, or when
+displayed on web pages.
+
+There are many advantages of using UTF8-encoded Unicodes for APL:
+
+- You can copy/paste APL programs and expressions from web pages,
+- You can print them on modern printers,
+- You can telnet or ssh to remote computers that run APL,
+- You can redirect UTF8 encoded files into the APL interpreter, This gives
+  you scripts written in APL.
+- You can exchange such files with APL users using APL interpreters from other
+  vendors, or copy APL code snippets into documents.
+
+The downside of UTF8-encoded Unicodes is that GNU APL can not (and will not)
+take care of how your keyboard, screen, and printers work. You have to set that
+up yourself and outside GNU APL.
+
+There is no standard way of setting things up for GNU APL. The rest of this
+file describes a number of different methods enabling APL characters on your
+machine that have made GNU APL work on most (but nor all) machines and
+operating systems around. These methods may conflict with each other, so use
+only one of them at a time.
+
+GNU APL comes with a directory called "support-files". This directory
+contains various configuration files needed by the methods described below.
+
+Most of the problems in getting UTF8-encoded Unicodes working is on the input
+side (from the keyboard to GNU APL). The output side is most ofter already
+working (thanks to Unicode).
+
+
+2. xmodmap
+=========
+
+If your operating system runs X (which is the case for most "Desktop"
+variants of GNU/Linux) then in is quite simple to make your keyboard produce
+APL characters.
+
+The program xmodmap (that comes with X, so it is installed on your machine
+already) defines a mapping between the keys you type and the character
+that is being produced (taking into account modifiers like Shift or Alt).
+
+The file support-files/apl.xmodmap (that comes with GNU APL) provides such
+a mapping; the normal keys produce ASCII characters while the Alt
+(and Shift-Alt) plane contains all APL character used by GNU APL. The
+mapping is enabled with the following command (we use "$ " to indicate the
+prompt of your shell):
+
+    $ xmodmap support-files/apl.xmodmap
+
+After that your keyboard will produce APL characters when the "Alt" key is
+held down. The keyboard layout defined in file "apl.xmodmap" is roughly this:
+
+╔════╦════╦════╦════╦════╦════╦════╦════╦════╦════╦════╦════╦════╦═════════╗
+║ ~⍨ ║ !¡ ║ @€ ║ #£ ║ $⍧ ║ %  ║ ^  ║ &  ║ *⍂ ║ (⍱ ║ )⍲ ║ _≡ ║ +⌹ ║         ║
+║ `◊ ║ 1¨ ║ 2¯ ║ 3< ║ 4≤ ║ 5= ║ 6≥ ║ 7> ║ 8≠ ║ 9∨ ║ 0∧ ║ -× ║ =÷ ║ BACKSP  ║
+╠════╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦═╩══╦══════╣
+║       ║ Q¿ ║ W⌽ ║ E⍷ ║ R  ║ T⍉ ║ Y¥ ║ U  ║ I⍸ ║ O⍥ ║ P⍟ ║ {  ║ }  ║  |⍀  ║
+║  TAB  ║ q? ║ w⍵ ║ e∈ ║ r⍴ ║ t∼ ║ y↑ ║ u↓ ║ i⍳ ║ o○ ║ p⋆ ║ [← ║ ]→ ║  \⍝  ║
+╠═══════╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩═╦══╩══════╣
+║ (CAPS   ║ A⊖ ║ S  ║ D  ║ F⍫ ║ G⍒ ║ H⍋ ║ J⍤ ║ K⌺ ║ L⍞ ║ :  ║ "  ║         ║
+║  LOCK)  ║ a⍺ ║ s⌈ ║ d⌊ ║ f_ ║ g∇ ║ h∆ ║ j∘ ║ k' ║ l⎕ ║ ;⊢ ║ '⊣ ║ RETURN  ║
+╠═════════╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═══╦╩═════════╣
+║             ║ Z  ║ X  ║ C⍝ ║ V  ║ B⍎ ║ N⍕ ║ M⌶ ║ <⍪ ║ >⍙ ║ ?⌿ ║          ║
+║  SHIFT      ║ z⊂ ║ x⊃ ║ c∩ ║ v∪ ║ b⊥ ║ n⊤ ║ m| ║ ,⌷ ║ .⍎ ║ /⍕ ║  SHIFT   ║
+╚═════════════╩════╩════╩════╩════╩════╩════╩════╩════╩════╩════╩══════════╝
+
+The files support-files/keyboard.txt and support-files/keyboard1.txt contain
+this mapping if you want to print it (keyboard1 is < 80 characters wide).
+
+If you don't like this particular layout, then you can modify "apl.xmodmap"
+to fit your preferences.
+
+If you are Finnish then you may want to have a look here:
+
+http://www.oksman.eu/apl/gnu_apl_installation_with_finnish_keyboard_layout.txt
+
+
+3. setxkbmap/xkbcomp
+====================
+
+Another program that can be used to make your keyboard produce APL
+characters is setxkbmap. Like xmodmap it requires that you are running X,
+and setxkbmap should not be mixed with xmodmap.
+
+setxkbmap is more modern and more powerful than xmodmap, but we had some
+problems with older GNU/Linux versions (an setxkbmap config file produced
+on a newer GNU/Linux did fix these problems).
+
+The file support-files/apl.xkm provides such a mapping (the file was kindly
+provided by David De La Harpe and produced with the command  xkbcomp on his
+machine).
+
+The mapping is installed like:
+
+    $ xkbcomp support-files/apl.xkm :0
+
+Unlike the xmodmap approach, the APL characters are now produced with
+the AltGr modifier key but not with the Alt modifier key. This was to
+better support emacs which needs the Alt keys for other purposes.
+
+More recent GNU/Linux versions come with a working APL keymap already;
+on those systems one of the following command may do (the syntax and file names
+of setxkbmap appear to have changed over time):
+
+    $ setxkbmap -layout "apl(sax)"
+    $ setxkbmap -layout "apl" -variant ",sax"
+    $ setxkbmap -layout "apl" -variant "sax"
+
+The file support-files/apl.xkb is the text file from which apl.xkm was
+generated. If you modify apl.xkb according to your preferences then you
+can generate your own apl.xkm file (see man pages for setxkbmap and xkbcomp).
+
+
+4. loadkeys
+===========
+
+If you are not running X then the above methods will complain about
+"unable to open display". In that case you can use command "loadkeys" to
+set up the keyboard layout, and command "unicode_start" to set up an APL
+font.
+
+    $ loadkeys support-files/apl.loadkeys
+    $ unicode_start Unifont-APL8x16.psf 
+
+The console font Unifont-APL8x16.psf will be contained in the next official
+release of GNU Unifont (maintained by Paul Hardy). In the meantime it can
+be downloaded from:
+
+    http://unifoundry.com
+
+
+5. Editing APL files
+====================
+
+Instead of using APL interactively, you may, like the author, find it more
+convenient to write a text file (an APL script) with all APL function
+definitions and variable assignments and to then run "apl -f" or "apl -s"
+with that file.
+
+The editor of choice for editing such files is vi (actually, vim). Recent
+versions of vim come with Unicode support and require no further changes
+to work with APL characters (assuming, of course, that one of the methods
+above is in place to make the keyboard generate APL characters).
+
+To further improve on that, there is a syntax file support-files/apl.vim
+that supports syntax coloring of vim.
+
+
+6. Emacs Mode
+=============
+
+Unlike vim, which runs out-of-the-box with APL characters, emacs needs
+a little more setup work. We cannot describe this here but would like to
+refer you to the web page of Elias Mårtenson who has put a lot of effort
+into developing an emacs mode for GNU APL. This is a must for every
+emacs user:
+
+    https://github.com/lokedhs/gnu-apl-mode 
+
+
+7. Remote Login
+===============
+
+Suppose GNU APL runs on machine A and you connect to it by means of ssh or
+telnet from machine B. In that case the setup discussed above is only needed
+on machine B and not on machine A.
+
+The same is true if machine A is a web server using APL for CGI scripting;
+in this case machine B does not normally need the above setup because these
+days browsers are aware of UTF8 encoding (which is a standard encoding for
+HTML pages.
+
+If you telnet to machine A, then make sure that 8-bit operation is enabled
+(-8 command line option) or else UTF8 encoding will not work.
+
+If you ssh, make sure that the TERM variable is properly set on machine A
+or else output coloring of GNU APL may send incorrect ESC sequences for
+switching between colors (or use apl -noColor).
+
+
+8. Pitfalls and Troubleshooting
+===============================
+
+There are other pieces of software that may intercept the byte stream om its
+its way from the keyboard, via GNU APL, to the screen (or printer). A prime
+example is locales that can change the encoding of the byte streams involved.
+
+Locales interfere with APL characters in multiple ways: they can install new
+keyboard mappings, change encoding to something other than UTF8, and currently
+also impact the file format of saved workspaces, for example by changing the
+decimal point from . to , in the printf() functions. One thing to avoid the
+latter is to ./configure with --disable-nls.
+
+If you need to troubleshoot APL characters, proceed as follows:
+
+1. determine if the problem is on input (between the keyboard and GNU APL),
+   or on output (between GNU APL and the screen (or printer), or both.
+
+2. To check the output, start GNU APL and issue the debug command:
+
+   ]KEYB
+
+   In GNU APL there are the classical APL commands starting with ) like
+   )FNS or )VARS, and debug commands starting with ] instead of ).
+   If ]KEYB shows a keyboard layout like the one in the xmodmap section
+   above, then the output is working. If not then something is wrong with
+   either the encoding, or with your fonts.
+
+3. For the input you can use commands like "xev" to see which Unicodes are
+   sent when you press a key. If the wrong Unicode is shown then your
+   key mapping is wrong; otherwise the encoding is more likely to be
+   the problem.
+
+
+8. APL Keyboards
+================
+
+If you are new to APL or use it only infrequently, then you will have
+problems remembering the locations of all the APL characters on your
+keyboard. In that situation an APL keyboard may be a great help.
+
+Technically, an APL keyboard is not different from a normal keyboard. It
+produces the same keycodes as a normal keyboard. It does therefore not
+replace the methods for setting up your keyboard that were discussed above.
+
+However, it has the common APL symbols engraved on its keycaps in addition to
+the normal ASCII characters. There are not many vendors around that sell APL
+keyboards (it took a while for the author to find one). Therefore it may be
+worthwhile to mention two:
+
+a. www.dyalog.com (send an email to sales@dyalog.com to get a quote.
+b. www.unicomp.com seems to have APL keyboards every now and then.
+
+An inquiry sent to a. was answered promptly; an inquiry sent to b. never.
+

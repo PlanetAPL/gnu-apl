@@ -1,0 +1,72 @@
+⍝ NativeFunctions.tc
+⍝ ----------------------------------
+
+      A←B←X←1
+
+      ⍝ category F0 ----------------------------------------
+      ⍝
+      'lib_template_F0.so' ⎕FX 'NATIVE_F0'
+NATIVE_F0
+
+        NATIVE_F0
+eval_() called
+
+
+      ⍝ category F12 ---------------------------------------
+      ⍝
+      'lib_template_F12.so' ⎕FX 'NATIVE_F12'
+NATIVE_F12
+
+        NATIVE_F12   B
+eval_B() called
+
+      A NATIVE_F12   B
+eval_AB() called
+
+        NATIVE_F12[X]   B
+eval_XB() called
+
+      A NATIVE_F12[X]   B
+eval_AXB() called
+
+
+      ⍝ category OP1 ---------------------------------------
+      ⍝
+      'lib_template_OP1.so' ⎕FX 'NATIVE_OP1'
+NATIVE_OP1
+
+      + NATIVE_OP1   B
+eval_LB() called
+
+      A + NATIVE_OP1   B
+eval_ALB() called
+
+      + NATIVE_OP1[X]   B
+eval_LXB() called
+
+      A + NATIVE_OP1[X]   B
+eval_ALXB() called
+
+
+      ⍝ category OP2 ---------------------------------------
+      ⍝
+      'lib_template_OP2.so' ⎕FX 'NATIVE_OP2'
+NATIVE_OP2
+
+      + NATIVE_OP2 × B
+eval_LRB() called
+
+      A + NATIVE_OP2 × B
+eval_ALRB() called
+
+      + NATIVE_OP2 × [X] B
+eval_LRXB() called
+
+      A + NATIVE_OP2 × [X] B
+eval_ALRXB() called
+
+
+⍝ ==================================
+
+⍝ selective spec ----------------------------------
+

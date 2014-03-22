@@ -1,0 +1,197 @@
+/*
+    This file is part of GNU APL, a free implementation of the
+    ISO/IEC Standard 13751, "Programming Language APL, Extended"
+
+    Copyright (C) 2008-2013  Dr. Jürgen Sauermann
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+// this file defines all token tags used in GNU APL
+
+   // token without value and without ID.
+   //
+TD(TOK_NEWLINE       , TC_NEWLINE   , TV_NONE , ID_No_ID        )
+
+   // token with value and without ID.
+   //
+TD(TOK_LINE          , TC_LINE      , TV_LIN  , ID_No_ID        )
+TD(TOK_SYMBOL        , TC_SYMBOL    , TV_SYM  , ID_No_ID        )
+TD(TOK_LSYMB         , TC_SYMBOL    , TV_SYM  , ID_No_ID1       )
+TD(TOK_LSYMB2        , TC_SYMBOL    , TV_SYM  , ID_No_ID2       )
+TD(TOK_NUMERIC       , TC_NUMERIC   , TV_CHAR , ID_No_ID        )
+TD(TOK_INDEX         , TC_INDEX     , TV_INDEX, ID_No_ID        )
+TD(TOK_PINDEX        , TC_PINDEX    , TV_INDEX, ID_No_ID        )
+TD(TOK_AXES          , TC_INDEX     , TV_VAL  , ID_No_ID        )
+TD(TOK_FUN0          , TC_FUN0      , TV_FUN  , ID_No_ID        ) // user def'd
+TD(TOK_FUN2          , TC_FUN2      , TV_FUN  , ID_No_ID        ) // user def'd
+TD(TOK_OPER1         , TC_OPER1     , TV_FUN  , ID_No_ID        ) // user def'd
+TD(TOK_OPER2         , TC_OPER2     , TV_FUN  , ID_No_ID        ) // user def'd
+
+   // token without value and with ID.
+   //
+TD(TOK_FIRST_TIME    , TC_VOID      , TV_NONE , ID_FIRST_TIME   )
+TD(TOK_INVALID       , TC_INVALID   , TV_NONE , ID_INVALID      )
+TD(TOK_VOID          , TC_VOID      , TV_NONE , ID_VOID         )
+TD(TOK_END           , TC_END       , TV_NONE , ID_END          )
+TD(TOK_ENDL          , TC_END       , TV_NONE , ID_ENDL         )   // last END
+TD(TOK_OFF           , TC_OFF       , TV_NONE , ID_OFF          )
+TD(TOK_ESCAPE        , TC_R_ARROW   , TV_NONE , ID_ESCAPE       )
+TD(TOK_SPACE         , TC_SPACE     , TV_NONE , ID_SPACE        )
+TD(TOK_COLON         , TC_COLON     , TV_NONE , ID_COLON        )
+TD(TOK_QUOTE1        , TC_QUOTE     , TV_NONE , ID_QUOTE1       )
+TD(TOK_QUOTE2        , TC_QUOTE     , TV_NONE , ID_QUOTE2       )
+TD(TOK_ASSIGN        , TC_ASSIGN    , TV_NONE , ID_ASSIGN       )
+TD(TOK_R_ARROW       , TC_R_ARROW   , TV_NONE , ID_R_ARROW      )
+TD(TOK_DIAMOND       , TC_DIAMOND   , TV_NONE , ID_DIAMOND      )
+TD(TOK_RETURN_EXEC   , TC_RETURN    , TV_NONE , ID_RETURN_EXEC  )
+TD(TOK_RETURN_STATS  , TC_RETURN    , TV_NONE , ID_RETURN_STATS )
+TD(TOK_RETURN_VOID   , TC_RETURN    , TV_NONE , ID_RETURN_VOID  )
+TD(TOK_NO_VALUE      , TC_VALUE     , TV_NONE , ID_NO_VALUE     )
+TD(TOK_SI_PUSHED     , TC_SI_LEAVE  , TV_NONE , ID_SI_PUSHED    )
+TD(TOK_L_BRACK       , TC_L_BRACK   , TV_NONE , ID_L_BRACK      )
+TD(TOK_SEMICOL       , TC_L_BRACK   , TV_NONE , ID_SEMICOL      )
+TD(TOK_R_BRACK       , TC_R_BRACK   , TV_NONE , ID_R_BRACK      )
+TD(TOK_L_PARENT      , TC_L_PARENT  , TV_NONE , ID_L_PARENT     )
+TD(TOK_R_PARENT      , TC_R_PARENT  , TV_NONE , ID_R_PARENT     )
+
+   // token with value and with ID.
+   //
+TD(TOK_RETURN_SYMBOL , TC_RETURN    , TV_SYM  , ID_RETURN_SYMBOL)
+TD(TOK_QUAD_QUAD     , TC_SYMBOL    , TV_SYM  , ID_QUAD_QUAD    )
+TD(TOK_QUAD_QUOTE    , TC_SYMBOL    , TV_SYM  , ID_QUOTE_QUAD   )
+TD(TOK_QUAD_AI       , TC_SYMBOL    , TV_SYM  , ID_QUAD_AI      )
+TD(TOK_QUAD_ARG      , TC_SYMBOL    , TV_SYM  , ID_QUAD_ARG     )
+TD(TOK_QUAD_AV       , TC_SYMBOL    , TV_SYM  , ID_QUAD_AV      )
+TD(TOK_QUAD_CT       , TC_SYMBOL    , TV_SYM  , ID_QUAD_CT      )
+TD(TOK_QUAD_EM       , TC_SYMBOL    , TV_SYM  , ID_QUAD_EM      )
+TD(TOK_QUAD_ET       , TC_SYMBOL    , TV_SYM  , ID_QUAD_ET      )
+TD(TOK_QUAD_FC       , TC_SYMBOL    , TV_SYM  , ID_QUAD_FC      )
+TD(TOK_QUAD_IO       , TC_SYMBOL    , TV_SYM  , ID_QUAD_IO      )
+TD(TOK_QUAD_LC       , TC_SYMBOL    , TV_SYM  , ID_QUAD_LC      )
+TD(TOK_QUAD_LX       , TC_SYMBOL    , TV_SYM  , ID_QUAD_LX      )
+TD(TOK_QUAD_L        , TC_SYMBOL    , TV_SYM  , ID_QUAD_L       )
+TD(TOK_QUAD_NLT      , TC_SYMBOL    , TV_SYM  , ID_QUAD_NLT     )
+TD(TOK_QUAD_PP       , TC_SYMBOL    , TV_SYM  , ID_QUAD_PP      )
+TD(TOK_QUAD_PR       , TC_SYMBOL    , TV_SYM  , ID_QUAD_PR      )
+TD(TOK_QUAD_PS       , TC_SYMBOL    , TV_SYM  , ID_QUAD_PS      )
+TD(TOK_QUAD_PT       , TC_SYMBOL    , TV_SYM  , ID_QUAD_PT      )
+TD(TOK_QUAD_PW       , TC_SYMBOL    , TV_SYM  , ID_QUAD_PW      )
+TD(TOK_QUAD_R        , TC_SYMBOL    , TV_SYM  , ID_QUAD_R       )
+TD(TOK_QUAD_RL       , TC_SYMBOL    , TV_SYM  , ID_QUAD_RL      )
+TD(TOK_QUAD_SVE      , TC_SYMBOL    , TV_SYM  , ID_QUAD_SVE     )
+TD(TOK_QUAD_SYL      , TC_SYMBOL    , TV_SYM  , ID_QUAD_SYL     )
+TD(TOK_QUAD_TC       , TC_SYMBOL    , TV_SYM  , ID_QUAD_TC      )
+TD(TOK_QUAD_TS       , TC_SYMBOL    , TV_SYM  , ID_QUAD_TS      )
+TD(TOK_QUAD_TZ       , TC_SYMBOL    , TV_SYM  , ID_QUAD_TZ      )
+TD(TOK_QUAD_UL       , TC_SYMBOL    , TV_SYM  , ID_QUAD_UL      )
+TD(TOK_QUAD_WA       , TC_SYMBOL    , TV_SYM  , ID_QUAD_WA      )
+
+TD(TOK_F0_ZILDE      , TC_FUN0      , TV_FUN  , ID_F0_ZILDE     )
+TD(TOK_F1_EXECUTE    , TC_FUN1      , TV_FUN  , ID_F1_EXECUTE   )
+TD(TOK_QUAD_AF       , TC_FUN1      , TV_FUN  , ID_QUAD_AF      )
+TD(TOK_QUAD_CR       , TC_FUN2      , TV_FUN  , ID_QUAD_CR      )
+TD(TOK_QUAD_DL       , TC_FUN1      , TV_FUN  , ID_QUAD_DL      )
+TD(TOK_QUAD_EC       , TC_FUN1      , TV_FUN  , ID_QUAD_EC      )
+TD(TOK_QUAD_ENV      , TC_FUN1      , TV_FUN  , ID_QUAD_ENV     )
+TD(TOK_QUAD_EX       , TC_FUN1      , TV_FUN  , ID_QUAD_EX      )
+TD(TOK_QUAD_SVQ      , TC_FUN1      , TV_FUN  , ID_QUAD_SVQ     )
+TD(TOK_QUAD_SVR      , TC_FUN1      , TV_FUN  , ID_QUAD_SVR     )
+TD(TOK_QUAD_SVS      , TC_FUN1      , TV_FUN  , ID_QUAD_SVS     )
+TD(TOK_QUAD_SI       , TC_FUN1      , TV_FUN  , ID_QUAD_SI      )
+TD(TOK_QUAD_UCS      , TC_FUN1      , TV_FUN  , ID_QUAD_UCS     )
+
+TD(TOK_F2_AND        , TC_FUN2      , TV_FUN  , ID_F2_AND       )
+TD(TOK_QUAD_AT       , TC_FUN2      , TV_FUN  , ID_QUAD_AT      )
+TD(TOK_F2_EQUAL      , TC_FUN2      , TV_FUN  , ID_F2_EQUAL     )
+TD(TOK_F2_FIND       , TC_FUN2      , TV_FUN  , ID_F2_FIND      )
+TD(TOK_F2_GREATER    , TC_FUN2      , TV_FUN  , ID_F2_GREATER   )
+TD(TOK_F2_INDEX      , TC_FUN2      , TV_FUN  , ID_F2_INDEX     )
+TD(TOK_QUAD_INP      , TC_FUN2      , TV_FUN  , ID_QUAD_INP     )
+TD(TOK_F2_LEQ        , TC_FUN2      , TV_FUN  , ID_F2_LEQ       )
+TD(TOK_F2_LESS       , TC_FUN2      , TV_FUN  , ID_F2_LESS      )
+TD(TOK_F2_MEQ        , TC_FUN2      , TV_FUN  , ID_F2_MEQ       )
+TD(TOK_F2_NAND       , TC_FUN2      , TV_FUN  , ID_F2_NAND      )
+TD(TOK_F2_NOR        , TC_FUN2      , TV_FUN  , ID_F2_NOR       )
+TD(TOK_F2_OR         , TC_FUN2      , TV_FUN  , ID_F2_OR        )
+TD(TOK_F2_UNEQ       , TC_FUN2      , TV_FUN  , ID_F2_UNEQ      )
+TD(TOK_QUAD_EA       , TC_FUN2      , TV_FUN  , ID_QUAD_EA      )
+TD(TOK_QUAD_SVC      , TC_FUN2      , TV_FUN  , ID_QUAD_SVC     )
+TD(TOK_QUAD_TF       , TC_FUN2      , TV_FUN  , ID_QUAD_TF      )
+
+TD(TOK_F12_BINOM     , TC_FUN2      , TV_FUN  , ID_F12_BINOM    )
+TD(TOK_F12_CIRCLE    , TC_FUN2      , TV_FUN  , ID_F12_CIRCLE   )
+TD(TOK_F12_COMMA     , TC_FUN2      , TV_FUN  , ID_F12_COMMA    )
+TD(TOK_F12_COMMA1    , TC_FUN2      , TV_FUN  , ID_F12_COMMA1   )
+TD(TOK_F12_DECODE    , TC_FUN2      , TV_FUN  , ID_F12_DECODE   )
+TD(TOK_F12_DIVIDE    , TC_FUN2      , TV_FUN  , ID_F12_DIVIDE   )
+TD(TOK_F12_DOMINO    , TC_FUN2      , TV_FUN  , ID_F12_DOMINO   )
+TD(TOK_F12_DROP      , TC_FUN2      , TV_FUN  , ID_F12_DROP     )
+TD(TOK_F12_ELEMENT   , TC_FUN2      , TV_FUN  , ID_F12_ELEMENT  )
+TD(TOK_F12_ENCODE    , TC_FUN2      , TV_FUN  , ID_F12_ENCODE   )
+TD(TOK_F12_EQUIV     , TC_FUN2      , TV_FUN  , ID_F12_EQUIV    )
+TD(TOK_F12_FORMAT    , TC_FUN2      , TV_FUN  , ID_F12_FORMAT   )
+TD(TOK_F12_INDEX_OF  , TC_FUN2      , TV_FUN  , ID_F12_INDEX_OF )
+TD(TOK_JOT           , TC_FUN2      , TV_FUN  , ID_JOT          )
+TD(TOK_F2_LEFT       , TC_FUN2      , TV_FUN  , ID_F2_LEFT      )
+TD(TOK_F12_LOGA      , TC_FUN2      , TV_FUN  , ID_F12_LOGA     )
+TD(TOK_F12_MINUS     , TC_FUN2      , TV_FUN  , ID_F12_MINUS    )
+TD(TOK_F12_PARTITION , TC_FUN2      , TV_FUN  , ID_F12_PARTITION)
+TD(TOK_F12_PICK      , TC_FUN2      , TV_FUN  , ID_F12_PICK     )
+TD(TOK_F12_PLUS      , TC_FUN2      , TV_FUN  , ID_F12_PLUS     )
+TD(TOK_F12_POWER     , TC_FUN2      , TV_FUN  , ID_F12_POWER    )
+TD(TOK_F12_RHO       , TC_FUN2      , TV_FUN  , ID_F12_RHO      )
+TD(TOK_F2_RIGHT      , TC_FUN2      , TV_FUN  , ID_F2_RIGHT     )
+TD(TOK_F12_RND_DN    , TC_FUN2      , TV_FUN  , ID_F12_RND_DN   )
+TD(TOK_F12_RND_UP    , TC_FUN2      , TV_FUN  , ID_F12_RND_UP   )
+TD(TOK_F12_ROLL      , TC_FUN2      , TV_FUN  , ID_F12_ROLL     )
+TD(TOK_F12_ROTATE    , TC_FUN2      , TV_FUN  , ID_F12_ROTATE   )
+TD(TOK_F12_ROTATE1   , TC_FUN2      , TV_FUN  , ID_F12_ROTATE1  )
+TD(TOK_F12_SORT_ASC  , TC_FUN2      , TV_FUN  , ID_F12_SORT_ASC )
+TD(TOK_F12_SORT_DES  , TC_FUN2      , TV_FUN  , ID_F12_SORT_DES )
+TD(TOK_F12_STILE     , TC_FUN2      , TV_FUN  , ID_F12_STILE    )
+TD(TOK_F12_TAKE      , TC_FUN2      , TV_FUN  , ID_F12_TAKE     )
+TD(TOK_F12_TIMES     , TC_FUN2      , TV_FUN  , ID_F12_TIMES    )
+TD(TOK_F12_TRANSPOSE , TC_FUN2      , TV_FUN  , ID_F12_TRANSPOSE)
+TD(TOK_F12_WITHOUT   , TC_FUN2      , TV_FUN  , ID_F12_WITHOUT  )
+TD(TOK_F1_UNIQUE     , TC_FUN1      , TV_FUN  , ID_F1_UNIQUE    )
+TD(TOK_QUAD_ES       , TC_FUN2      , TV_FUN  , ID_QUAD_ES      )
+TD(TOK_QUAD_FX       , TC_FUN2      , TV_FUN  , ID_QUAD_FX      )
+TD(TOK_QUAD_NA       , TC_FUN2      , TV_FUN  , ID_QUAD_NA      )
+TD(TOK_QUAD_NC       , TC_FUN1      , TV_FUN  , ID_QUAD_NC      )
+TD(TOK_QUAD_NL       , TC_FUN2      , TV_FUN  , ID_QUAD_NL      )
+TD(TOK_QUAD_SVO      , TC_FUN2      , TV_FUN  , ID_QUAD_SVO     )
+
+TD(TOK_OPER1_COMMUTE , TC_OPER1     , TV_FUN  , ID_OPER1_COMMUTE)
+TD(TOK_OPER1_EACH    , TC_OPER1     , TV_FUN  , ID_OPER1_EACH   )
+TD(TOK_OPER1_RANK    , TC_OPER1     , TV_FUN  , ID_OPER1_RANK   )
+TD(TOK_OPER1_REDUCE  , TC_OPER1     , TV_FUN  , ID_OPER1_REDUCE )
+TD(TOK_OPER1_REDUCE1 , TC_OPER1     , TV_FUN  , ID_OPER1_REDUCE1)
+TD(TOK_OPER1_SCAN    , TC_OPER1     , TV_FUN  , ID_OPER1_SCAN   )
+TD(TOK_OPER1_SCAN1   , TC_OPER1     , TV_FUN  , ID_OPER1_SCAN1  )
+TD(TOK_OPER2_PRODUCT , TC_OPER2     , TV_FUN  , ID_OPER2_PRODUCT)
+
+TD(TOK_VARIABLE      , TC_VALUE     , TV_SYM  , ID_VARIABLE     )
+TD(TOK_APL_VALUE1    , TC_VALUE     , TV_VAL  , ID_APL_VALUE1   ) // grouped
+TD(TOK_APL_VALUE2    , TC_VALUE     , TV_VAL  , ID_APL_VALUE2   ) // assigned
+TD(TOK_APL_VALUE3    , TC_VALUE     , TV_VAL  , ID_APL_VALUE3   ) // strand
+TD(TOK_BRANCH        , TC_R_ARROW   , TV_INT  , ID_BRANCH       )
+TD(TOK_CHARACTER     , TC_VALUE     , TV_CHAR , ID_CHARACTER    )
+TD(TOK_INTEGER       , TC_VALUE     , TV_INT  , ID_INTEGER      )
+TD(TOK_REAL          , TC_VALUE     , TV_FLT  , ID_REAL         )
+TD(TOK_COMPLEX       , TC_VALUE     , TV_CPX  , ID_COMPLEX      )
+TD(TOK_ERROR         , TC_SI_LEAVE  , TV_INT  , ID_ERROR        )
+
+#undef TD
+
